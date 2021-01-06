@@ -55,5 +55,29 @@
      <loc>https://supaerodatascience.github.io/OBD/1_7_readings.html</loc>
      <lastmod>2021-01-06</lastmod>
      <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://supaerodatascience.github.io/OBD/2_1_overview.html</loc>
+     <lastmod>2021-01-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://supaerodatascience.github.io/OBD/2_2_functional.html</loc>
+     <lastmod>2021-01-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://supaerodatascience.github.io/OBD/2_3_mapreduce.html</loc>
+     <lastmod>2021-01-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://supaerodatascience.github.io/OBD/2_4_spark.html</loc>
+     <lastmod>2021-01-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://supaerodatascience.github.io/OBD/2_5_dask.html</loc>
+     <lastmod>2021-01-06</lastmod>
+     <changefreq>daily</changefreq>
+    </url><url>
+     <loc>https://supaerodatascience.github.io/OBD/2_6_project.html</loc>
+     <lastmod>2021-01-06</lastmod>
+     <changefreq>daily</changefreq>
     </url>
 </urlset>
