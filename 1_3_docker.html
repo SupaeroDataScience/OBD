@@ -1,0 +1,1599 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Big Data class at ISAE-Supaero as part of the SDD program">
+      
+      
+      
+      
+        <link rel="canonical" href="https://supaerodatascience.github.io/OBD/1_3_docker.html">
+      
+      <link rel="shortcut icon" href="https://raw.githubusercontent.com/SupaeroDataScience/OBD/main/src/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.3">
+    
+    
+      
+        <title>TP - Tools of Big Data</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.3b61ea93.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.39b8e14a.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#02a6f2">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#docker-hands-on" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://supaerodatascience.github.io/OBD/" title="Tools of Big Data" class="md-header-nav__button md-logo" aria-label="Tools of Big Data">
+      
+  <img src="https://raw.githubusercontent.com/SupaeroDataScience/OBD/main/src/favicon.ico" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Tools of Big Data
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              TP
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/SupaeroDataScience/OBD/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SupaeroDataScience/OBD
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://supaerodatascience.github.io/OBD/" title="Tools of Big Data" class="md-nav__button md-logo" aria-label="Tools of Big Data">
+      
+  <img src="https://raw.githubusercontent.com/SupaeroDataScience/OBD/main/src/favicon.ico" alt="logo">
+
+    </a>
+    Tools of Big Data
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/SupaeroDataScience/OBD/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SupaeroDataScience/OBD
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+    
+    <label class="md-nav__link" for="nav-2">
+      Data Computation
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Data Computation" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Data Computation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_1_overview.html" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_1_presentation.html" class="md-nav__link">
+      Presentation
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+    
+    <label class="md-nav__link" for="nav-3">
+      Cloud Computing
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Cloud Computing" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Cloud Computing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_2_cloud.html" class="md-nav__link">
+      Lectures
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_2_gcp_setup.html" class="md-nav__link">
+      TP 1 GCP Initial Setup & First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_2_gcp_handson.html" class="md-nav__link">
+      TP 2 GCP Hands On
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  
+
+
+  
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" checked>
+    
+    <label class="md-nav__link" for="nav-4">
+      Containers, Docker
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Containers, Docker" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Containers, Docker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_3_containers.html" class="md-nav__link">
+      Lecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        TP
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="1_3_docker.html" class="md-nav__link md-nav__link--active">
+      TP
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-run-this" class="md-nav__link">
+    How to run this ?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-manipulating-docker-for-the-1st-time" class="md-nav__link">
+    1. Manipulating docker for the 1st time
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Manipulating docker for the 1st time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-docker-run" class="md-nav__link">
+    1.1 Docker Run
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-terminology" class="md-nav__link">
+    1.2 Terminology
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-webapps-with-docker" class="md-nav__link">
+    2.0 Webapps with Docker
+  </a>
+  
+    <nav class="md-nav" aria-label="2.0 Webapps with Docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-run-a-static-website-in-a-container" class="md-nav__link">
+    2.1 Run a static website in a container
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-docker-images" class="md-nav__link">
+    2.2 Docker Images
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-create-your-first-image" class="md-nav__link">
+    2.3 Create your first image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#231-create-a-python-flask-app-that-displays-random-cat-pix" class="md-nav__link">
+    2.3.1 Create a Python Flask app that displays random cat pix
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3.1 Create a Python Flask app that displays random cat pix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apppy" class="md-nav__link">
+    app.py
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requirementstxt" class="md-nav__link">
+    requirements.txt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#templatesindexhtml" class="md-nav__link">
+    templates/index.html
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#232-write-a-dockerfile" class="md-nav__link">
+    2.3.2 Write a Dockerfile
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#233-build-the-image" class="md-nav__link">
+    2.3.3 Build the image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#234-run-your-image" class="md-nav__link">
+    2.3.4 Run your image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#235-dockerfile-commands-summary" class="md-nav__link">
+    2.3.5 Dockerfile commands summary
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-containers-registry" class="md-nav__link">
+    3. Containers Registry
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-data-science-standardized-environment" class="md-nav__link">
+    4.  Data Science Standardized Environment
+  </a>
+  
+    <nav class="md-nav" aria-label="4.  Data Science Standardized Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-intro" class="md-nav__link">
+    4.1 Intro
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-kaggle-docker-image" class="md-nav__link">
+    4.2 Kaggle Docker Image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-get-the-algorithm-in-ml-git-in-your-virtual-machine" class="md-nav__link">
+    4.3 Get the algorithm in ML git in your Virtual Machine
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-mounting-volumes-and-ports" class="md-nav__link">
+    4.4 Mounting volumes and ports
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-bonus-using-google-cloud-tools-for-docker" class="md-nav__link">
+    5. Bonus - Using Google Cloud Tools for Docker
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-bonus-docker-compose" class="md-nav__link">
+    6. Bonus - Docker Compose
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-bonus-going-further" class="md-nav__link">
+    7. Bonus - Going further
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
+    
+    <label class="md-nav__link" for="nav-5">
+      Orchestration, Deployment, Kubernetes
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Orchestration, Deployment, Kubernetes" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Orchestration, Deployment, Kubernetes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_4_orchestration.html" class="md-nav__link">
+      Lecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_5_deployment.html" class="md-nav__link">
+      Interactive Hands On
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_5_bonus.html" class="md-nav__link">
+      TP
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="1_4_be.html" class="md-nav__link">
+      Cloud and Docker BE
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="1_6_conclusion.html" class="md-nav__link">
+      Data Computation Conclusion
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="1_7_readings.html" class="md-nav__link">
+      Data Computation Reading List
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-run-this" class="md-nav__link">
+    How to run this ?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-manipulating-docker-for-the-1st-time" class="md-nav__link">
+    1. Manipulating docker for the 1st time
+  </a>
+  
+    <nav class="md-nav" aria-label="1. Manipulating docker for the 1st time">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#11-docker-run" class="md-nav__link">
+    1.1 Docker Run
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#12-terminology" class="md-nav__link">
+    1.2 Terminology
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#20-webapps-with-docker" class="md-nav__link">
+    2.0 Webapps with Docker
+  </a>
+  
+    <nav class="md-nav" aria-label="2.0 Webapps with Docker">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#21-run-a-static-website-in-a-container" class="md-nav__link">
+    2.1 Run a static website in a container
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#22-docker-images" class="md-nav__link">
+    2.2 Docker Images
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#23-create-your-first-image" class="md-nav__link">
+    2.3 Create your first image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#231-create-a-python-flask-app-that-displays-random-cat-pix" class="md-nav__link">
+    2.3.1 Create a Python Flask app that displays random cat pix
+  </a>
+  
+    <nav class="md-nav" aria-label="2.3.1 Create a Python Flask app that displays random cat pix">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#apppy" class="md-nav__link">
+    app.py
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#requirementstxt" class="md-nav__link">
+    requirements.txt
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#templatesindexhtml" class="md-nav__link">
+    templates/index.html
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#232-write-a-dockerfile" class="md-nav__link">
+    2.3.2 Write a Dockerfile
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#233-build-the-image" class="md-nav__link">
+    2.3.3 Build the image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#234-run-your-image" class="md-nav__link">
+    2.3.4 Run your image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#235-dockerfile-commands-summary" class="md-nav__link">
+    2.3.5 Dockerfile commands summary
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-containers-registry" class="md-nav__link">
+    3. Containers Registry
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-data-science-standardized-environment" class="md-nav__link">
+    4.  Data Science Standardized Environment
+  </a>
+  
+    <nav class="md-nav" aria-label="4.  Data Science Standardized Environment">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-intro" class="md-nav__link">
+    4.1 Intro
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-kaggle-docker-image" class="md-nav__link">
+    4.2 Kaggle Docker Image
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-get-the-algorithm-in-ml-git-in-your-virtual-machine" class="md-nav__link">
+    4.3 Get the algorithm in ML git in your Virtual Machine
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#44-mounting-volumes-and-ports" class="md-nav__link">
+    4.4 Mounting volumes and ports
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-bonus-using-google-cloud-tools-for-docker" class="md-nav__link">
+    5. Bonus - Using Google Cloud Tools for Docker
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-bonus-docker-compose" class="md-nav__link">
+    6. Bonus - Docker Compose
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-bonus-going-further" class="md-nav__link">
+    7. Bonus - Going further
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/SupaeroDataScience/OBD/edit/master/docs/1_3_docker.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="docker-hands-on">Docker: Hands on<a class="headerlink" href="#docker-hands-on" title="Permanent link">🔗</a></h1>
+<h2 id="how-to-run-this">How to run this ?<a class="headerlink" href="#how-to-run-this" title="Permanent link">🔗</a></h2>
+<p>We will discover the basics of docker and you will be able to manipulate your first images and containers !</p>
+<p>First, you should be inside jupyter lab using the google cloud deep learning VM created previously</p>
+<p>It's possible to do this from google cloud shell using code-server as well but you will be limited in disk space later on</p>
+<p>Why only two of these ? That's because both have git and docker installed and installing docker is a pain.</p>
+<p>If you are running linux on your laptop you may <a href="https://docs.docker.com/engine/install/">install docker</a> and do everything from your computer</p>
+<p>Otherwise... don't ;)</p>
+<p><strong>FIRST</strong> if you are using the deep learning vm</p>
+<p>Disconnect from your instance and relaunch it while mapping 8888 as well. You should have the vm jupyter's lab on 8080, and 8888 free</p>
+<details><summary>Solution</summary>
+
+    `gcloud compute ssh user@machine-name --zone europe-west4-a -- -L 8080:localhost:8080 -L 8081:localhost:8081 -L 8888:localhost:8888`
+
+  </details>
+
+<h2 id="1-manipulating-docker-for-the-1st-time">1. Manipulating docker for the 1st time<a class="headerlink" href="#1-manipulating-docker-for-the-1st-time" title="Permanent link">🔗</a></h2>
+<p>Source: <a href="https://github.com/docker/labs">https://github.com/docker/labs</a></p>
+<p>To get started, let's run the following in our terminal:</p>
+<div class="highlight"><pre><span></span><code>$ docker pull alpine
+</code></pre></div>
+<p>The <code>pull</code> command fetches the alpine <strong>image</strong> from the <strong>Docker registry</strong> and saves it in our system. You can use the <code>docker images</code> command to see a list of all images on your system.
+<div class="highlight"><pre><span></span><code>$ docker images
+REPOSITORY              TAG                 IMAGE ID            CREATED             VIRTUAL SIZE
+alpine                 latest              c51f86c28340        4 weeks ago         1.109 MB
+hello-world             latest              690ed74de00f        5 months ago        960 B
+</code></pre></div></p>
+<h3 id="11-docker-run">1.1 Docker Run<a class="headerlink" href="#11-docker-run" title="Permanent link">🔗</a></h3>
+<p>Great! Let's now run a Docker <strong>container</strong> based on this image. To do that you are going to use the <code>docker run</code> command.</p>
+<div class="highlight"><pre><span></span><code>$ docker run alpine ls -l
+total 48
+drwxr-xr-x    2 root     root          4096 Mar  2 16:20 bin
+drwxr-xr-x    5 root     root           360 Mar 18 09:47 dev
+drwxr-xr-x   13 root     root          4096 Mar 18 09:47 etc
+drwxr-xr-x    2 root     root          4096 Mar  2 16:20 home
+drwxr-xr-x    5 root     root          4096 Mar  2 16:20 lib
+......
+......
+</code></pre></div>
+<p>What happened? Behind the scenes, a lot of stuff happened. When you call <code>run</code>,</p>
+<ol>
+<li>The Docker client contacts the Docker daemon</li>
+<li>The Docker daemon checks local store if the image (alpine in this case) is available locally, and if not, downloads it from Docker Store. (Since we have issued <code>docker pull alpine</code> before, the download step is not necessary)</li>
+<li>The Docker daemon creates the container and then runs a command in that container.</li>
+<li>The Docker daemon streams the output of the command to the Docker client</li>
+</ol>
+<p>When you run <code>docker run alpine</code>, you provided a command (<code>ls -l</code>), so Docker started the command specified and you saw the listing.</p>
+<p>Let's try something more exciting.</p>
+<p><div class="highlight"><pre><span></span><code>$ docker run alpine echo &quot;hello from alpine&quot;
+hello from alpine
+</code></pre></div>
+OK, that's some actual output. In this case, the Docker client dutifully ran the <code>echo</code> command in our alpine container and then exited it. If you've noticed, all of that happened pretty quickly. Imagine booting up a virtual machine, running a command and then killing it. Now you know why they say containers are fast!</p>
+<p>Try another command.</p>
+<div class="highlight"><pre><span></span><code>docker run alpine /bin/sh
+</code></pre></div>
+<p>Wait, nothing happened! Is that a bug? Well, no. These interactive shells will exit after running any scripted commands, unless they are run in an interactive terminal - so for this example to not exit, you need to <code>docker run -it alpine /bin/sh</code>.</p>
+<p>You are now inside the container shell and you can try out a few commands like <code>ls -l</code>, <code>uname -a</code> and others. Exit out of the container by giving the <code>exit</code> command.</p>
+<p>Ok, now it's time to see the <code>docker ps</code> command. The <code>docker ps</code> command shows you all containers that are currently running.</p>
+<div class="highlight"><pre><span></span><code>$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+</code></pre></div>
+<p>Since no containers are running, you see a blank line. Let's try a more useful variant: <code>docker ps -a</code></p>
+<div class="highlight"><pre><span></span><code>$ docker ps -a
+CONTAINER ID        IMAGE               COMMAND                  CREATED             STATUS                      PORTS               NAMES
+36171a5da744        alpine              &quot;/bin/sh&quot;                5 minutes ago       Exited (0) 2 minutes ago                        fervent_newton
+a6a9d46d0b2f        alpine             &quot;echo &#39;hello from alp&quot;    6 minutes ago       Exited (0) 6 minutes ago                        lonely_kilby
+ff0a5c3750b9        alpine             &quot;ls -l&quot;                   8 minutes ago       Exited (0) 8 minutes ago                        elated_ramanujan
+c317d0a9e3d2        hello-world         &quot;/hello&quot;                 34 seconds ago      Exited (0) 12 minutes ago                       stupefied_mcclintock
+</code></pre></div>
+<p>What you see above is a list of all containers that you ran. Notice that the <code>STATUS</code> column shows that these containers exited a few minutes ago. You're probably wondering if there is a way to run more than just one command in a container. Let's try that now:</p>
+<p><div class="highlight"><pre><span></span><code>$ docker run -it alpine /bin/sh
+/ # ls
+bin      dev      etc      home     lib      linuxrc  media    mnt      proc     root     run      sbin     sys      tmp      usr      var
+/ # uname -a
+Linux 97916e8cb5dc 4.4.27-moby #1 SMP Wed Oct 26 14:01:48 UTC 2016 x86_64 Linux
+</code></pre></div>
+Running the <code>run</code> command with the <code>-it</code> flags attaches us to an interactive tty in the container. Now you can run as many commands in the container as you want. Take some time to run your favorite commands.</p>
+<p>That concludes a whirlwind tour of the <code>docker run</code> command which would most likely be the command you'll use most often. It makes sense to spend some time getting comfortable with it. To find out more about <code>run</code>, use <code>docker run --help</code> to see a list of all flags it supports. As you proceed further, we'll see a few more variants of <code>docker run</code>.</p>
+<h3 id="12-terminology">1.2 Terminology<a class="headerlink" href="#12-terminology" title="Permanent link">🔗</a></h3>
+<p>In the last section, you saw a lot of Docker-specific jargon which might be confusing to some. So before you go further, let's clarify some terminology that is used frequently in the Docker ecosystem.</p>
+<ul>
+<li><em>Images</em> - The file system and configuration of our application which are used to create containers. To find out more about a Docker image, run <code>docker inspect alpine</code>. In the demo above, you used the <code>docker pull</code> command to download the <strong>alpine</strong> image. When you executed the command <code>docker run hello-world</code>, it also did a <code>docker pull</code> behind the scenes to download the <strong>hello-world</strong> image.</li>
+<li><em>Containers</em> - Running instances of Docker images &mdash; containers run the actual applications. A container includes an application and all of its dependencies. It shares the kernel with other containers, and runs as an isolated process in user space on the host OS. You created a container using <code>docker run</code> which you did using the alpine image that you downloaded. A list of running containers can be seen using the <code>docker ps</code> command.</li>
+<li><em>Docker daemon</em> - The background service running on the host that manages building, running and distributing Docker containers.</li>
+<li><em>Docker client</em> - The command line tool that allows the user to interact with the Docker daemon.</li>
+<li><em>Docker Store</em> - A <a href="https://store.docker.com/">registry</a> of Docker images, where you can find trusted and enterprise ready containers, plugins, and Docker editions. You'll be using this later in this tutorial.</li>
+</ul>
+<h2 id="20-webapps-with-docker">2.0 Webapps with Docker<a class="headerlink" href="#20-webapps-with-docker" title="Permanent link">🔗</a></h2>
+<p>Source: <a href="https://github.com/docker/labs">https://github.com/docker/labs</a></p>
+<p>Great! So you have now looked at <code>docker run</code>, played with a Docker container and also got the hang of some terminology. Armed with all this knowledge, you are now ready to get to the real stuff &#8212; deploying web applications with Docker.</p>
+<h3 id="21-run-a-static-website-in-a-container">2.1 Run a static website in a container<a class="headerlink" href="#21-run-a-static-website-in-a-container" title="Permanent link">🔗</a></h3>
+<blockquote>
+<p><strong>Note:</strong> Code for this section is in this repo in the website directory</p>
+</blockquote>
+<p>Let's start by taking baby-steps. First, we'll use Docker to run a static website in a container. The website is based on an existing image. We'll pull a Docker image from Docker Store, run the container, and see how easy it is to set up a web server.</p>
+<p>The image that you are going to use is a single-page website that was already created for this demo and is available on the Docker Store as <a href="https://store.docker.com/community/images/dockersamples/static-site"><code>dockersamples/static-site</code></a>. You can download and run the image directly in one go using <code>docker run</code> as follows.</p>
+<div class="highlight"><pre><span></span><code>docker run -d dockersamples/static-site
+</code></pre></div>
+<p>Files:</p>
+<ul>
+<li><a href="resources/Dockerfile">Dockerfile</a></li>
+<li><a href="resources/hello_docker.html">hello_docker.html</a></li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> The current version of this image doesn't run without the <code>-d</code> flag. The <code>-d</code> flag enables <strong>detached mode</strong>, which detaches the running container from the terminal/shell and returns your prompt after the container starts. We are debugging the problem with this image but for now, use <code>-d</code> even for this first example.</p>
+</blockquote>
+<p>So, what happens when you run this command?</p>
+<p>Since the image doesn't exist on your Docker host, the Docker daemon first fetches it from the registry and then runs it as a container.</p>
+<p>Now that the server is running, do you see the website? What port is it running on? And more importantly, how do you access the container directly from our host machine?</p>
+<p>Actually, you probably won't be able to answer any of these questions yet! &#9786; In this case, the client didn't tell the Docker Engine to publish any of the ports, so you need to re-run the <code>docker run</code> command to add this instruction.</p>
+<p>Let's re-run the command with some new flags to publish ports and pass your name to the container to customize the message displayed. We'll use the <em>-d</em> option again to run the container in detached mode.</p>
+<p>First, stop the container that you have just launched. In order to do this, we need the container ID.</p>
+<p>Since we ran the container in detached mode, we don't have to launch another terminal to do this. Run <code>docker ps</code> to view the running containers.</p>
+<div class="highlight"><pre><span></span><code>$ docker ps
+CONTAINER ID        IMAGE                  COMMAND                  CREATED             STATUS              PORTS               NAMES
+a7a0e504ca3e        dockersamples/static-site   <span class="s2">&quot;/bin/sh -c &#39;cd /usr/&quot;</span>   <span class="m">28</span> seconds ago      Up <span class="m">26</span> seconds       <span class="m">80</span>/tcp, <span class="m">443</span>/tcp     stupefied_mahavira
+</code></pre></div>
+<p>Check out the <code>CONTAINER ID</code> column. You will need to use this <code>CONTAINER ID</code> value, a long sequence of characters, to identify the container you want to stop, and then to remove it. The example below provides the <code>CONTAINER ID</code> on our system; you should use the value that you see in your terminal.</p>
+<div class="highlight"><pre><span></span><code>$ docker stop a7a0e504ca3e
+$ docker rm   a7a0e504ca3e
+</code></pre></div>
+<blockquote>
+<p><strong>Note:</strong> A cool feature is that you do not need to specify the entire <code>CONTAINER ID</code>. You can just specify a few starting characters and if it is unique among all the containers that you have launched, the Docker client will intelligently pick it up.</p>
+</blockquote>
+<p>Now, let's launch a container in <strong>detached</strong> mode as shown below:</p>
+<div class="highlight"><pre><span></span><code>$ docker run --name static-site -e <span class="nv">AUTHOR</span><span class="o">=</span><span class="s2">&quot;Your Name&quot;</span> -d -P dockersamples/static-site
+e61d12292d69556eabe2a44c16cbd54486b2527e2ce4f95438e504afb7b02810
+</code></pre></div>
+<p>In the above command:</p>
+<ul>
+<li><code>-d</code> will create a container with the process detached from our terminal</li>
+<li><code>-P</code> will publish all the exposed container ports to random ports on the Docker host</li>
+<li><code>-e</code> is how you pass environment variables to the container</li>
+<li><code>--name</code> allows you to specify a container name</li>
+<li><code>AUTHOR</code> is the environment variable name and <code>Your Name</code> is the value that you can pass</li>
+</ul>
+<p>Now you can see the ports by running the <code>docker port</code> command.</p>
+<div class="highlight"><pre><span></span><code>$ docker port static-site
+<span class="m">443</span>/tcp -&gt; <span class="m">0</span>.0.0.0:32772
+<span class="m">80</span>/tcp -&gt; <span class="m">0</span>.0.0.0:32773
+</code></pre></div>
+<p>If you are running <a href="https://docs.docker.com/docker-for-mac/">Docker for Mac</a>, <a href="https://docs.docker.com/docker-for-windows/">Docker for Windows</a>, or Docker on Linux, you can open <code>http://localhost:[YOUR_PORT_FOR 80/tcp]</code>. For our example this is <code>http://localhost:32773</code>.</p>
+<p>If you are using Docker Machine on Mac or Windows, you can find the hostname on the command line using <code>docker-machine</code> as follows (assuming you are using the <code>default</code> machine).</p>
+<p><div class="highlight"><pre><span></span><code>$ docker-machine ip default
+<span class="m">192</span>.168.99.100
+</code></pre></div>
+You can now open <code>http://&lt;YOUR_IPADDRESS&gt;:[YOUR_PORT_FOR 80/tcp]</code> to see your site live! For our example, this is: <code>http://192.168.99.100:32773</code>.</p>
+<p>You can also run a second webserver at the same time, specifying a custom host port mapping to the container's webserver.</p>
+<div class="highlight"><pre><span></span><code>$ docker run --name static-site-2 -e <span class="nv">AUTHOR</span><span class="o">=</span><span class="s2">&quot;Your Name&quot;</span> -d -p <span class="m">8888</span>:80 dockersamples/static-site
+</code></pre></div>
+<p><img src="https://raw.githubusercontent.com/docker/labs/master/beginner/images/static.png" title="static"></p>
+<p>To deploy this on a real server you would just need to install Docker, and run the above <code>docker</code> command(as in this case you can see the <code>AUTHOR</code> is Docker which we passed as an environment variable).</p>
+<p>Now that you've seen how to run a webserver inside a Docker container, how do you create your own Docker image? This is the question we'll explore in the next section.</p>
+<p>But first, let's stop and remove the containers since you won't be using them anymore.</p>
+<div class="highlight"><pre><span></span><code>$ docker stop static-site
+$ docker rm static-site
+</code></pre></div>
+<p>Let's use a shortcut to remove the second site:</p>
+<div class="highlight"><pre><span></span><code>$ docker rm -f static-site-2
+</code></pre></div>
+<p>Run <code>docker ps</code> to make sure the containers are gone.</p>
+<div class="highlight"><pre><span></span><code>$ docker ps
+CONTAINER ID        IMAGE               COMMAND             CREATED             STATUS              PORTS               NAMES
+</code></pre></div>
+<h3 id="22-docker-images">2.2 Docker Images<a class="headerlink" href="#22-docker-images" title="Permanent link">🔗</a></h3>
+<p>In this section, let's dive deeper into what Docker images are. You will build your own image, use that image to run an application locally.</p>
+<p>Docker images are the basis of containers. In the previous example, you <strong>pulled</strong> the <em>dockersamples/static-site</em> image from the registry and asked the Docker client to run a container <strong>based</strong> on that image. To see the list of images that are available locally on your system, run the <code>docker images</code> command.</p>
+<div class="highlight"><pre><span></span><code>$ docker images
+REPOSITORY             TAG                 IMAGE ID            CREATED             SIZE
+dockersamples/static-site   latest              92a386b6e686        <span class="m">2</span> hours ago        <span class="m">190</span>.5 MB
+nginx                  latest              af4b3d7d5401        <span class="m">3</span> hours ago        <span class="m">190</span>.5 MB
+python                 <span class="m">2</span>.7                 1c32174fd534        <span class="m">14</span> hours ago        <span class="m">676</span>.8 MB
+postgres               <span class="m">9</span>.4                 88d845ac7a88        <span class="m">14</span> hours ago        <span class="m">263</span>.6 MB
+containous/traefik     latest              27b4e0c6b2fd        <span class="m">4</span> days ago          <span class="m">20</span>.75 MB
+node                   <span class="m">0</span>.10                42426a5cba5f        <span class="m">6</span> days ago          <span class="m">633</span>.7 MB
+redis                  latest              4f5f397d4b7c        <span class="m">7</span> days ago          <span class="m">177</span>.5 MB
+mongo                  latest              467eb21035a8        <span class="m">7</span> days ago          <span class="m">309</span>.7 MB
+alpine                 <span class="m">3</span>.3                 70c557e50ed6        <span class="m">8</span> days ago          <span class="m">4</span>.794 MB
+java                   <span class="m">7</span>                   21f6ce84e43c        <span class="m">8</span> days ago          <span class="m">587</span>.7 MB
+</code></pre></div>
+<p>Above is a list of images that I've pulled from the registry and those I've created myself (we'll shortly see how). You will have a different list of images on your machine. The <code>TAG</code> refers to a particular snapshot of the image and the <code>ID</code> is the corresponding unique identifier for that image.</p>
+<p>For simplicity, you can think of an image akin to a git repository - images can be <a href="https://docs.docker.com/engine/reference/commandline/commit/">committed</a> with changes and have multiple versions. When you do not provide a specific version number, the client defaults to <code>latest</code>.</p>
+<p>For example you could pull a specific version of <code>ubuntu</code> image as follows:</p>
+<div class="highlight"><pre><span></span><code>$ docker pull ubuntu:12.04
+</code></pre></div>
+<p>If you do not specify the version number of the image then, as mentioned, the Docker client will default to a version named <code>latest</code>.</p>
+<p>So for example, the <code>docker pull</code> command given below will pull an image named <code>ubuntu:latest</code>:</p>
+<div class="highlight"><pre><span></span><code>$ docker pull ubuntu
+</code></pre></div>
+<p>To get a new Docker image you can either get it from a registry (such as the Docker Store) or create your own. There are hundreds of thousands of images available on <a href="https://store.docker.com">Docker Store</a>. You can also search for images directly from the command line using <code>docker search</code>.</p>
+<p>An important distinction with regard to images is between <em>base images</em> and <em>child images</em>.</p>
+<ul>
+<li>
+<p><strong>Base images</strong> are images that have no parent images, usually images with an OS like ubuntu, alpine or debian.</p>
+</li>
+<li>
+<p><strong>Child images</strong> are images that build on base images and add additional functionality.</p>
+</li>
+</ul>
+<p>Another key concept is the idea of <em>official images</em> and <em>user images</em>. (Both of which can be base images or child images.)</p>
+<ul>
+<li>
+<p><strong>Official images</strong> are Docker sanctioned images. Docker, Inc. sponsors a dedicated team that is responsible for reviewing and publishing all Official Repositories content. This team works in collaboration with upstream software maintainers, security experts, and the broader Docker community. These are not prefixed by an organization or user name. In the list of images above, the <code>python</code>, <code>node</code>, <code>alpine</code> and <code>nginx</code> images are official (base) images. To find out more about them, check out the <a href="https://docs.docker.com/docker-hub/official_repos/">Official Images Documentation</a>.</p>
+</li>
+<li>
+<p><strong>User images</strong> are images created and shared by users like you. They build on base images and add additional functionality. Typically these are formatted as <code>user/image-name</code>. The <code>user</code> value in the image name is your Docker Store user or organization name.</p>
+</li>
+</ul>
+<h3 id="23-create-your-first-image">2.3 Create your first image<a class="headerlink" href="#23-create-your-first-image" title="Permanent link">🔗</a></h3>
+<blockquote>
+<p><strong>Note:</strong> The code for this section is in this repository in the <a href="https://github.com/docker/labs/tree/master/beginner/flask-app">flask-app</a> directory.</p>
+</blockquote>
+<p>Now that you have a better understanding of images, it's time to create your own. Our goal here is to create an image that sandboxes a small <a href="http://flask.pocoo.org">Flask</a> application.</p>
+<p><strong>The goal of this exercise is to create a Docker image which will run a Flask app.</strong></p>
+<p>We'll do this by first pulling together the components for a random cat picture generator built with Python Flask, then <em>dockerizing</em> it by writing a <em>Dockerfile</em>. Finally, we'll build the image, and then run it.</p>
+<ul>
+<li><a href="#231-create-a-python-flask-app-that-displays-random-cat-pix">Create a Python Flask app that displays random cat pix</a></li>
+<li><a href="#232-write-a-dockerfile">Write a Dockerfile</a></li>
+<li><a href="#233-build-the-image">Build the image</a></li>
+<li><a href="#234-run-your-image">Run your image</a></li>
+<li><a href="#235-dockerfile-commands-summary">Dockerfile commands summary</a></li>
+</ul>
+<h3 id="231-create-a-python-flask-app-that-displays-random-cat-pix">2.3.1 Create a Python Flask app that displays random cat pix<a class="headerlink" href="#231-create-a-python-flask-app-that-displays-random-cat-pix" title="Permanent link">🔗</a></h3>
+<p>For the purposes of this workshop, we've created a fun little Python Flask app that displays a random cat <code>.gif</code> every time it is loaded - because, you know, who doesn't like cats?</p>
+<p>Start by creating a directory called <code>flask-app</code> where we'll create the following files:</p>
+<ul>
+<li><a href="#apppy">app.py</a></li>
+<li><a href="#requirementstxt">requirements.txt</a></li>
+<li><a href="#templatesindexhtml">templates/index.html</a></li>
+<li><a href="#dockerfile">Dockerfile</a></li>
+</ul>
+<p>Make sure to <code>cd flask-app</code> before you start creating the files, because you don't want to start adding a whole bunch of other random files to your image.</p>
+<h4 id="apppy">app.py<a class="headerlink" href="#apppy" title="Permanent link">🔗</a></h4>
+<p>Create the <strong>app.py</strong> with the following content:</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span> <span class="nn">flask</span> <span class="kn">import</span> <span class="n">Flask</span><span class="p">,</span> <span class="n">render_template</span>
+<span class="kn">import</span> <span class="nn">random</span>
+
+<span class="n">app</span> <span class="o">=</span> <span class="n">Flask</span><span class="p">(</span><span class="vm">__name__</span><span class="p">)</span>
+
+<span class="c1"># list of cat images</span>
+<span class="n">images</span> <span class="o">=</span> <span class="p">[</span>
+   <span class="s2">&quot;http://img.buzzfeed.com/buzzfeed-static/static/2013-10/enhanced/webdr05/15/9/anigif_enhanced-buzz-26388-1381844103-11.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;http://img.buzzfeed.com/buzzfeed-static/static/2013-10/enhanced/webdr01/15/9/anigif_enhanced-buzz-31540-1381844535-8.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;http://img.buzzfeed.com/buzzfeed-static/static/2013-10/enhanced/webdr05/15/9/anigif_enhanced-buzz-26390-1381844163-18.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;http://img.buzzfeed.com/buzzfeed-static/static/2013-10/enhanced/webdr06/15/10/anigif_enhanced-buzz-1376-1381846217-0.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;http://img.buzzfeed.com/buzzfeed-static/static/2013-10/enhanced/webdr03/15/9/anigif_enhanced-buzz-3391-1381844336-26.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;http://img.buzzfeed.com/buzzfeed-static/static/2013-10/enhanced/webdr06/15/10/anigif_enhanced-buzz-29111-1381845968-0.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;http://img.buzzfeed.com/buzzfeed-static/static/2013-10/enhanced/webdr03/15/9/anigif_enhanced-buzz-3409-1381844582-13.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;http://img.buzzfeed.com/buzzfeed-static/static/2013-10/enhanced/webdr02/15/9/anigif_enhanced-buzz-19667-1381844937-10.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;http://img.buzzfeed.com/buzzfeed-static/static/2013-10/enhanced/webdr05/15/9/anigif_enhanced-buzz-26358-1381845043-13.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;http://img.buzzfeed.com/buzzfeed-static/static/2013-10/enhanced/webdr06/15/9/anigif_enhanced-buzz-18774-1381844645-6.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;http://img.buzzfeed.com/buzzfeed-static/static/2013-10/enhanced/webdr06/15/9/anigif_enhanced-buzz-25158-1381844793-0.gif&quot;</span><span class="p">,</span>
+    <span class="s2">&quot;http://img.buzzfeed.com/buzzfeed-static/static/2013-10/enhanced/webdr03/15/10/anigif_enhanced-buzz-11980-1381846269-1.gif&quot;</span>
+    <span class="p">]</span>
+
+<span class="nd">@app</span><span class="o">.</span><span class="n">route</span><span class="p">(</span><span class="s1">&#39;/&#39;</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">index</span><span class="p">():</span>
+    <span class="n">url</span> <span class="o">=</span> <span class="n">random</span><span class="o">.</span><span class="n">choice</span><span class="p">(</span><span class="n">images</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">render_template</span><span class="p">(</span><span class="s1">&#39;index.html&#39;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="n">url</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s2">&quot;__main__&quot;</span><span class="p">:</span>
+    <span class="n">app</span><span class="o">.</span><span class="n">run</span><span class="p">(</span><span class="n">host</span><span class="o">=</span><span class="s2">&quot;0.0.0.0&quot;</span><span class="p">)</span>
+</code></pre></div>
+<h4 id="requirementstxt">requirements.txt<a class="headerlink" href="#requirementstxt" title="Permanent link">🔗</a></h4>
+<p>In order to install the Python modules required for our app, we need to create a file called <strong>requirements.txt</strong> and add the following line to that file:</p>
+<div class="highlight"><pre><span></span><code>Flask==0.10.1
+</code></pre></div>
+<h4 id="templatesindexhtml">templates/index.html<a class="headerlink" href="#templatesindexhtml" title="Permanent link">🔗</a></h4>
+<p>Create a directory called <code>templates</code> and create an <strong>index.html</strong> file in that directory with the following content in it:</p>
+<div class="highlight"><pre><span></span><code><span class="p">&lt;</span><span class="nt">html</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">head</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">style</span> <span class="na">type</span><span class="o">=</span><span class="s">&quot;text/css&quot;</span><span class="p">&gt;</span>
+      <span class="nt">body</span> <span class="p">{</span>
+        <span class="k">background</span><span class="p">:</span> <span class="kc">black</span><span class="p">;</span>
+        <span class="k">color</span><span class="p">:</span> <span class="kc">white</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="nt">div</span><span class="p">.</span><span class="nc">container</span> <span class="p">{</span>
+        <span class="k">max-width</span><span class="p">:</span> <span class="mi">500</span><span class="kt">px</span><span class="p">;</span>
+        <span class="k">margin</span><span class="p">:</span> <span class="mi">100</span><span class="kt">px</span> <span class="kc">auto</span><span class="p">;</span>
+        <span class="k">border</span><span class="p">:</span> <span class="mi">20</span><span class="kt">px</span> <span class="kc">solid</span> <span class="kc">white</span><span class="p">;</span>
+        <span class="k">padding</span><span class="p">:</span> <span class="mi">10</span><span class="kt">px</span><span class="p">;</span>
+        <span class="k">text-align</span><span class="p">:</span> <span class="kc">center</span><span class="p">;</span>
+      <span class="p">}</span>
+      <span class="nt">h4</span> <span class="p">{</span>
+        <span class="k">text-transform</span><span class="p">:</span> <span class="kc">uppercase</span><span class="p">;</span>
+      <span class="p">}</span>
+    <span class="p">&lt;/</span><span class="nt">style</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">head</span><span class="p">&gt;</span>
+  <span class="p">&lt;</span><span class="nt">body</span><span class="p">&gt;</span>
+    <span class="p">&lt;</span><span class="nt">div</span> <span class="na">class</span><span class="o">=</span><span class="s">&quot;container&quot;</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">h4</span><span class="p">&gt;</span>Cat Gif of the day<span class="p">&lt;/</span><span class="nt">h4</span><span class="p">&gt;</span>
+      <span class="p">&lt;</span><span class="nt">img</span> <span class="na">src</span><span class="o">=</span><span class="s">&quot;{{url}}&quot;</span> <span class="p">/&gt;</span>
+      <span class="p">&lt;</span><span class="nt">p</span><span class="p">&gt;&lt;</span><span class="nt">small</span><span class="p">&gt;</span>Courtesy: <span class="p">&lt;</span><span class="nt">a</span> <span class="na">href</span><span class="o">=</span><span class="s">&quot;http://www.buzzfeed.com/copyranter/the-best-cat-gif-post-in-the-history-of-cat-gifs&quot;</span><span class="p">&gt;</span>Buzzfeed<span class="p">&lt;/</span><span class="nt">a</span><span class="p">&gt;&lt;/</span><span class="nt">small</span><span class="p">&gt;&lt;/</span><span class="nt">p</span><span class="p">&gt;</span>
+    <span class="p">&lt;/</span><span class="nt">div</span><span class="p">&gt;</span>
+  <span class="p">&lt;/</span><span class="nt">body</span><span class="p">&gt;</span>
+<span class="p">&lt;/</span><span class="nt">html</span><span class="p">&gt;</span>
+</code></pre></div>
+<h3 id="232-write-a-dockerfile">2.3.2 Write a Dockerfile<a class="headerlink" href="#232-write-a-dockerfile" title="Permanent link">🔗</a></h3>
+<p>We want to create a Docker image with this web app. As mentioned above, all user images are based on a <em>base image</em>. Since our application is written in Python, we will build our own Python image based on <a href="https://store.docker.com/images/alpine">Alpine</a>. We'll do that using a <strong>Dockerfile</strong>.</p>
+<p>A <a href="https://docs.docker.com/engine/reference/builder/">Dockerfile</a> is a text file that contains a list of commands that the Docker daemon calls while creating an image. The Dockerfile contains all the information that Docker needs to know to run the app &#8212; a base Docker image to run from, location of your project code, any dependencies it has, and what commands to run at start-up. It is a simple way to automate the image creation process. The best part is that the <a href="https://docs.docker.com/engine/reference/builder/">commands</a> you write in a Dockerfile are <em>almost</em> identical to their equivalent Linux commands. This means you don't really have to learn new syntax to create your own Dockerfiles.</p>
+<ol>
+<li>Create a file called <strong>Dockerfile</strong>, and add content to it as described below.</li>
+</ol>
+<p>We'll start by specifying our base image, using the <code>FROM</code> keyword:</p>
+<div class="highlight"><pre><span></span><code>FROM alpine:3.5
+</code></pre></div>
+<ol>
+<li>The next step usually is to write the commands of copying the files and installing the dependencies. But first we will install the Python pip package to the alpine linux distribution. This will not just install the pip package but any other dependencies too, which includes the python interpreter. Add the following <a href="https://docs.docker.com/engine/reference/builder/#run">RUN</a> command next:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>RUN apk add --update py2-pip
+</code></pre></div>
+<ol>
+<li>Let's add the files that make up the Flask Application.</li>
+</ol>
+<p>Install all Python requirements for our app to run. This will be accomplished by adding the lines:</p>
+<div class="highlight"><pre><span></span><code>COPY requirements.txt /usr/src/app/
+RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt
+</code></pre></div>
+<p>Copy the files you have created earlier into our image by using <a href="https://docs.docker.com/engine/reference/builder/#copy">COPY</a>  command.</p>
+<div class="highlight"><pre><span></span><code>COPY app.py /usr/src/app/
+COPY templates/index.html /usr/src/app/templates/
+</code></pre></div>
+<ol>
+<li>Specify the port number which needs to be exposed. Since our flask app is running on <code>5000</code> that's what we'll expose.</li>
+</ol>
+<div class="highlight"><pre><span></span><code>EXPOSE 5000
+</code></pre></div>
+<ol>
+<li>The last step is the command for running the application which is simply - <code>python ./app.py</code>. Use the <a href="https://docs.docker.com/engine/reference/builder/#cmd">CMD</a> command to do that:</li>
+</ol>
+<div class="highlight"><pre><span></span><code>CMD [&quot;python&quot;, &quot;/usr/src/app/app.py&quot;]
+</code></pre></div>
+<p>The primary purpose of <code>CMD</code> is to tell the container which command it should run by default when it is started.</p>
+<ol>
+<li>Verify your Dockerfile.</li>
+</ol>
+<p>Our <code>Dockerfile</code> is now ready. This is how it looks:</p>
+<div class="highlight"><pre><span></span><code># our base image
+FROM alpine:3.5
+
+# Install python and pip
+RUN apk add --update py2-pip
+
+# install Python modules needed by the Python app
+COPY requirements.txt /usr/src/app/
+RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt
+
+# copy files required for the app to run
+COPY app.py /usr/src/app/
+COPY templates/index.html /usr/src/app/templates/
+
+# tell the port number the container should expose
+EXPOSE 5000
+
+# run the application
+CMD [&quot;python&quot;, &quot;/usr/src/app/app.py&quot;]
+</code></pre></div>
+<h3 id="233-build-the-image">2.3.3 Build the image<a class="headerlink" href="#233-build-the-image" title="Permanent link">🔗</a></h3>
+<p>Now that you have your <code>Dockerfile</code>, you can build your image. The <code>docker build</code> command does the heavy-lifting of creating a docker image from a <code>Dockerfile</code>.</p>
+<p>The <code>docker build</code> command is quite simple - it takes an optional tag name with the <code>-t</code> flag, and the location of the directory containing the <code>Dockerfile</code> - the <code>.</code> indicates the current directory:</p>
+<p><code>docker build -t myfirstapp:1.0</code></p>
+<div class="highlight"><pre><span></span><code>$ docker build -t myfirstapp:1.0 .
+Sending build context to Docker daemon 9.728 kB
+Step 1 : FROM alpine:latest
+ ---&gt; 0d81fc72e790
+Step 2 : RUN apk add --update py-pip
+ ---&gt; Running in 8abd4091b5f5
+fetch http://dl-4.alpinelinux.org/alpine/v3.3/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-4.alpinelinux.org/alpine/v3.3/community/x86_64/APKINDEX.tar.gz
+(1/12) Installing libbz2 (1.0.6-r4)
+(2/12) Installing expat (2.1.0-r2)
+(3/12) Installing libffi (3.2.1-r2)
+(4/12) Installing gdbm (1.11-r1)
+(5/12) Installing ncurses-terminfo-base (6.0-r6)
+(6/12) Installing ncurses-terminfo (6.0-r6)
+(7/12) Installing ncurses-libs (6.0-r6)
+(8/12) Installing readline (6.3.008-r4)
+(9/12) Installing sqlite-libs (3.9.2-r0)
+(10/12) Installing python (2.7.11-r3)
+(11/12) Installing py-setuptools (18.8-r0)
+(12/12) Installing py-pip (7.1.2-r0)
+Executing busybox-1.24.1-r7.trigger
+OK: 59 MiB in 23 packages
+ ---&gt; 976a232ac4ad
+Removing intermediate container 8abd4091b5f5
+Step 3 : COPY requirements.txt /usr/src/app/
+ ---&gt; 65b4be05340c
+Removing intermediate container 29ef53b58e0f
+Step 4 : RUN pip install --no-cache-dir -r /usr/src/app/requirements.txt
+ ---&gt; Running in a1f26ded28e7
+Collecting Flask==0.10.1 (from -r /usr/src/app/requirements.txt (line 1))
+  Downloading Flask-0.10.1.tar.gz (544kB)
+Collecting Werkzeug&gt;=0.7 (from Flask==0.10.1-&gt;-r /usr/src/app/requirements.txt (line 1))
+  Downloading Werkzeug-0.11.4-py2.py3-none-any.whl (305kB)
+Collecting Jinja2&gt;=2.4 (from Flask==0.10.1-&gt;-r /usr/src/app/requirements.txt (line 1))
+  Downloading Jinja2-2.8-py2.py3-none-any.whl (263kB)
+Collecting itsdangerous&gt;=0.21 (from Flask==0.10.1-&gt;-r /usr/src/app/requirements.txt (line 1))
+  Downloading itsdangerous-0.24.tar.gz (46kB)
+Collecting MarkupSafe (from Jinja2&gt;=2.4-&gt;Flask==0.10.1-&gt;-r /usr/src/app/requirements.txt (line 1))
+  Downloading MarkupSafe-0.23.tar.gz
+Installing collected packages: Werkzeug, MarkupSafe, Jinja2, itsdangerous, Flask
+  Running setup.py install for MarkupSafe
+  Running setup.py install for itsdangerous
+  Running setup.py install for Flask
+Successfully installed Flask-0.10.1 Jinja2-2.8 MarkupSafe-0.23 Werkzeug-0.11.4 itsdangerous-0.24
+You are using pip version 7.1.2, however version 8.1.1 is available.
+You should consider upgrading via the &#39;pip install --upgrade pip&#39; command.
+ ---&gt; 8de73b0730c2
+Removing intermediate container a1f26ded28e7
+Step 5 : COPY app.py /usr/src/app/
+ ---&gt; 6a3436fca83e
+Removing intermediate container d51b81a8b698
+Step 6 : COPY templates/index.html /usr/src/app/templates/
+ ---&gt; 8098386bee99
+Removing intermediate container b783d7646f83
+Step 7 : EXPOSE 5000
+ ---&gt; Running in 31401b7dea40
+ ---&gt; 5e9988d87da7
+Removing intermediate container 31401b7dea40
+Step 8 : CMD python /usr/src/app/app.py
+ ---&gt; Running in 78e324d26576
+ ---&gt; 2f7357a0805d
+Removing intermediate container 78e324d26576
+Successfully built 2f7357a0805d
+</code></pre></div>
+<p>If you don't have the <code>alpine:3.5</code> image, the client will first pull the image and then create your image. Therefore, your output on running the command will look different from mine. If everything went well, your image should be ready! Run <code>docker images</code> and see if your image (<code>&lt;YOUR_USERNAME&gt;/myfirstapp</code>) shows.</p>
+<h3 id="234-run-your-image">2.3.4 Run your image<a class="headerlink" href="#234-run-your-image" title="Permanent link">🔗</a></h3>
+<p>The next step in this section is to run the image and see if it actually works.</p>
+<div class="highlight"><pre><span></span><code>$ docker run -p <span class="m">8888</span>:5000 --name myfirstapp myfirstapp:1.0
+ * Running on http://0.0.0.0:5000/ <span class="o">(</span>Press CTRL+C to quit<span class="o">)</span>
+</code></pre></div>
+<p>Head over to <code>http://localhost:8888</code> and your app should be live. <strong>Note</strong> If you are using Docker Machine, you may need to open up another terminal and determine the container ip address using <code>docker-machine ip default</code>.</p>
+<p><img alt="catgif" src="https://raw.githubusercontent.com/docker/labs/master/beginner/images/catgif.png" /></p>
+<p>Hit the Refresh button in the web browser to see a few more cat images.</p>
+<h3 id="235-dockerfile-commands-summary">2.3.5 Dockerfile commands summary<a class="headerlink" href="#235-dockerfile-commands-summary" title="Permanent link">🔗</a></h3>
+<p>Here's a quick summary of the few basic commands we used in our Dockerfile.</p>
+<ul>
+<li>
+<p><code>FROM</code> starts the Dockerfile. It is a requirement that the Dockerfile must start with the <code>FROM</code> command. Images are created in layers, which means you can use another image as the base image for your own. The <code>FROM</code> command defines your base layer. As arguments, it takes the name of the image. Optionally, you can add the Docker Cloud username of the maintainer and image version, in the format <code>username/imagename:version</code>.</p>
+</li>
+<li>
+<p><code>RUN</code> is used to build up the Image you're creating. For each <code>RUN</code> command, Docker will run the command then create a new layer of the image. This way you can roll back your image to previous states easily. The syntax for a <code>RUN</code> instruction is to place the full text of the shell command after the <code>RUN</code> (e.g., <code>RUN mkdir /user/local/foo</code>). This will automatically run in a <code>/bin/sh</code> shell. You can define a different shell like this: <code>RUN /bin/bash -c 'mkdir /user/local/foo'</code></p>
+</li>
+<li>
+<p><code>COPY</code> copies local files into the container.</p>
+</li>
+<li>
+<p><code>CMD</code> defines the commands that will run on the Image at start-up. Unlike a <code>RUN</code>, this does not create a new layer for the Image, but simply runs the command. There can only be one <code>CMD</code> per a Dockerfile/Image. If you need to run multiple commands, the best way to do that is to have the <code>CMD</code> run a script. <code>CMD</code> requires that you tell it where to run the command, unlike <code>RUN</code>. So example <code>CMD</code> commands would be:</p>
+</li>
+</ul>
+<div class="highlight"><pre><span></span><code>  CMD [&quot;python&quot;, &quot;./app.py&quot;]
+
+  CMD [&quot;/bin/bash&quot;, &quot;echo&quot;, &quot;Hello World&quot;]
+</code></pre></div>
+<ul>
+<li><code>EXPOSE</code> creates a hint for users of an image which ports provide services. It is included in the information which
+ can be retrieved via <code>$ docker inspect &lt;container-id&gt;</code>.     </li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> The <code>EXPOSE</code> command does not actually make any ports accessible to the host! Instead, this requires 
+publishing ports by means of the <code>-p</code> flag when using <code>$ docker run</code>.  </p>
+</blockquote>
+<ul>
+<li><code>PUSH</code> pushes your image to Docker Cloud, or alternately to a <a href="https://docs.docker.com/registry/">private registry</a></li>
+</ul>
+<blockquote>
+<p><strong>Note:</strong> If you want to learn more about Dockerfiles, check out <a href="https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices/">Best practices for writing Dockerfiles</a>.</p>
+</blockquote>
+<h2 id="3-containers-registry">3. Containers Registry<a class="headerlink" href="#3-containers-registry" title="Permanent link">🔗</a></h2>
+<p>Remember Container Registries ? Here as <a href="https://blogs.vmware.com/cloudnative/2017/06/21/what-is-a-container-registry/">some explainers</a></p>
+<p>The main container registry is dockerhub, https://hub.docker.com/</p>
+<p>All docker engines that have access to the internet have access to this main hub, and this is where we pulled our base images from before</p>
+<p>Example, the <a href="https://hub.docker.com/_/python">Python Image</a></p>
+<p>Google Cloud has a <a href="https://cloud.google.com/container-registry/docs">Container Registry</a> per project, which ensures the docker images you build are accessible for the people who have access to your project only.</p>
+<p>However, it requires naming the image in a specific fashion: <code>eu.gcr.io/${PROJECT_ID}/name:tag</code></p>
+<ul>
+<li>Use the <a href="https://cloud.google.com/container-registry/docs/pushing-and-pulling#tag_the_local_image_with_the_registry_name">docker cli to tag</a> your previous myfirstapp image to the right namespace</li>
+</ul>
+<p><code>docker tag myfirstapp eu.gcr.io/{PROJECT_ID}/myfirstapp:1.0</code></p>
+<ul>
+<li>
+<p>Upload it on container registry <code>docker push [HOSTNAME]/[PROJECT-ID]/[IMAGE]:[TAG]</code></p>
+</li>
+<li>
+<p>If you have a problem of authentification, <code>gcloud auth configure-docker</code></p>
+</li>
+</ul>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>to get your project id: <code>PROJECT_ID=$(gcloud config get-value project 2&gt; /dev/null)</code></p>
+</div>
+<ul>
+<li>Go to container registry https://console.cloud.google.com/gcr, you should see your docker image :)</li>
+</ul>
+<h2 id="4-data-science-standardized-environment">4.  Data Science Standardized Environment<a class="headerlink" href="#4-data-science-standardized-environment" title="Permanent link">🔗</a></h2>
+<h3 id="41-intro">4.1 Intro<a class="headerlink" href="#41-intro" title="Permanent link">🔗</a></h3>
+<p>Those of us who work on a team know how hard it is to create a standardize development environment. Or if you have ever updated a dependency and had everything break, you understand the importance of keeping development environments isolated.</p>
+<p>Using Docker, we can create a project / team image with our development environment and mount a volume with our notebooks and data.</p>
+<p>The benefits of this workflow are that we can:</p>
+<ul>
+<li>Separate out projects</li>
+<li>Spin up a container to onboard new employees</li>
+<li>Build an automated testing pipeline to confirm upgrade dependencies do not break code</li>
+</ul>
+<h3 id="42-kaggle-docker-image">4.2 Kaggle Docker Image<a class="headerlink" href="#42-kaggle-docker-image" title="Permanent link">🔗</a></h3>
+<p>For this exercise we will use <a href="https://medium.com/@kaggleteam/how-to-get-started-with-data-science-in-containers-6ed48cb08266">Kaggle Docker Image</a> which is a fully configured docker image that can be used as a data science container</p>
+<p>Take a look at the documentation and <a href="https://github.com/Kaggle/docker-python">the repository</a></p>
+<h3 id="43-get-the-algorithm-in-ml-git-in-your-virtual-machine">4.3 Get the algorithm in ML git in your Virtual Machine<a class="headerlink" href="#43-get-the-algorithm-in-ml-git-in-your-virtual-machine" title="Permanent link">🔗</a></h3>
+<ul>
+<li>
+<p>From your vm, run <code>git clone https://github.com/erachelson/MLclass.git</code>, this should setup your AML class inside your VM</p>
+</li>
+<li>
+<p>Using code-server is not mandatory now</p>
+</li>
+</ul>
+<h3 id="44-mounting-volumes-and-ports">4.4 Mounting volumes and ports<a class="headerlink" href="#44-mounting-volumes-and-ports" title="Permanent link">🔗</a></h3>
+<p>Now let's run the image. This container has a jupyter notebook accessible from port 8080 so we will need to map the host port 8888 (the one accessible from the ssh tunnel) to the docker port 8080, we will use <a href="https://docs.docker.com/config/containers/container-networking/">port forwarding</a></p>
+<p>We will also need to make available the notebooks on the VM to the container... we will <a href="https://docs.docker.com/storage/volumes/">mount volumes</a>. Your data is located in <code>/home/${USER}/MLClass</code> and we want to miunt it in <code>/tmp/workdir</code></p>
+<div class="highlight"><pre><span></span><code>docker run --rm -it <span class="se">\</span>
+  -p <span class="m">8888</span>:8080 <span class="se">\</span>
+  -v /home/<span class="si">${</span><span class="nv">USER</span><span class="si">}</span>/MLclass:/home/Mlclass <span class="se">\</span>
+  --workdir /home/ <span class="se">\</span>
+  gcr.io/kaggle-images/python <span class="se">\</span>
+  /bin/bash /run_jupyter.sh
+</code></pre></div>
+<p>Note: this image is very large !</p>
+<p>Options breakdown:
+* <code>--rm</code> remove the container when we stop it
+* <code>-it</code> run the container in interactive mode
+* <code>-p</code> forward port from host:container
+* other: options from the kaggle container</p>
+<p>You should now see a jupyter lab with mlclass accessible if you connect your browser (in your laptop) to port 8888 (localhost:8888)</p>
+<p>So basically, we mapped the ports local 8888 to vm 8888 and vm 8888 to docker 8080</p>
+<h2 id="5-bonus-using-google-cloud-tools-for-docker">5. Bonus - Using Google Cloud Tools for Docker<a class="headerlink" href="#5-bonus-using-google-cloud-tools-for-docker" title="Permanent link">🔗</a></h2>
+<p>Using cloud shell you should be able to do the Hello World Dockerfile exercise except that instead of using docker build you use Google Cloud Build</p>
+<p>Tutorial: <a href="https://cloud.google.com/cloud-build/docs/quickstart-docker">https://cloud.google.com/cloud-build/docs/quickstart-docker</a></p>
+<p>Example command :<code>gcloud builds submit --tag eu.gcr.io/$PROJECT_ID/{image}:{tag} .</code></p>
+<div class="admonition help">
+<p class="admonition-title">Help</p>
+<p>to get your project id: <code>PROJECT_ID=$(gcloud config get-value project 2&gt; /dev/null)</code></p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Try to build the hello world app</p>
+</div>
+<h2 id="6-bonus-docker-compose">6. Bonus - Docker Compose<a class="headerlink" href="#6-bonus-docker-compose" title="Permanent link">🔗</a></h2>
+<p><a href="https://hackernoon.com/practical-introduction-to-docker-compose-d34e79c4c2b6">https://hackernoon.com/practical-introduction-to-docker-compose-d34e79c4c2b6</a></p>
+<p><a href="https://github.com/docker/labs/blob/master/beginner/chapters/votingapp.md">https://github.com/docker/labs/blob/master/beginner/chapters/votingapp.md</a></p>
+<h2 id="7-bonus-going-further">7. Bonus - Going further<a class="headerlink" href="#7-bonus-going-further" title="Permanent link">🔗</a></h2>
+<p><a href="https://container.training/">https://container.training/</a></p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="1_3_containers.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Lecture
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="1_4_orchestration.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Lecture
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="assets/javascripts/vendor.08c56446.min.js"></script>
+      <script src="assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: ".",
+          features: ['toc.autohide'],
+          search: Object.assign({
+            worker: "assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

@@ -1,0 +1,954 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Big Data class at ISAE-Supaero as part of the SDD program">
+      
+      
+      
+      
+        <link rel="canonical" href="https://supaerodatascience.github.io/OBD/1_2_gcp_setup.html">
+      
+      <link rel="shortcut icon" href="https://raw.githubusercontent.com/SupaeroDataScience/OBD/main/src/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.3">
+    
+    
+      
+        <title>TP 1 GCP Initial Setup & First Steps - Tools of Big Data</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.3b61ea93.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.39b8e14a.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#02a6f2">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gcp-initial-setup-first-steps" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://supaerodatascience.github.io/OBD/" title="Tools of Big Data" class="md-header-nav__button md-logo" aria-label="Tools of Big Data">
+      
+  <img src="https://raw.githubusercontent.com/SupaeroDataScience/OBD/main/src/favicon.ico" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Tools of Big Data
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              TP 1 GCP Initial Setup & First Steps
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/SupaeroDataScience/OBD/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SupaeroDataScience/OBD
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://supaerodatascience.github.io/OBD/" title="Tools of Big Data" class="md-nav__button md-logo" aria-label="Tools of Big Data">
+      
+  <img src="https://raw.githubusercontent.com/SupaeroDataScience/OBD/main/src/favicon.ico" alt="logo">
+
+    </a>
+    Tools of Big Data
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/SupaeroDataScience/OBD/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SupaeroDataScience/OBD
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+    
+    <label class="md-nav__link" for="nav-2">
+      Data Computation
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Data Computation" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Data Computation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_1_overview.html" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_1_presentation.html" class="md-nav__link">
+      Presentation
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  
+
+
+  
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Cloud Computing
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Cloud Computing" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Cloud Computing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_2_cloud.html" class="md-nav__link">
+      Lectures
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        TP 1 GCP Initial Setup & First Steps
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="1_2_gcp_setup.html" class="md-nav__link md-nav__link--active">
+      TP 1 GCP Initial Setup & First Steps
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-create-your-gcp-account" class="md-nav__link">
+    1. Create your GCP Account
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-install-google-cloud-sdk-configure-the-shell" class="md-nav__link">
+    2. Install Google Cloud SDK &amp; Configure the shell
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-my-first-vm-google-cloud-shell" class="md-nav__link">
+    3. My first "VM", Google Cloud Shell
+  </a>
+  
+    <nav class="md-nav" aria-label="3. My first "VM", Google Cloud Shell">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#intro-to-google-cloud-shell" class="md-nav__link">
+    Intro to Google Cloud Shell
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-to-google-cloud-shell" class="md-nav__link">
+    Connect to google cloud shell
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explore-google-cloud-shell" class="md-nav__link">
+    Explore google cloud shell
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-demo-of-cloud-shell-web-preview" class="md-nav__link">
+    A demo of cloud shell web preview
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-google-colaboratory" class="md-nav__link">
+    4. Google Colaboratory
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Google Colaboratory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#intro-description-of-google-colaboratory" class="md-nav__link">
+    Intro &amp; Description of Google Colaboratory
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loading-jupyter-notebooks-interacting-with-google-drive" class="md-nav__link">
+    Loading jupyter notebooks, interacting with google drive
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-nice-usages-of-google-colab" class="md-nav__link">
+    Other nice usages of Google Colab
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_2_gcp_handson.html" class="md-nav__link">
+      TP 2 GCP Hands On
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+    
+    <label class="md-nav__link" for="nav-4">
+      Containers, Docker
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Containers, Docker" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Containers, Docker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_3_containers.html" class="md-nav__link">
+      Lecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_3_docker.html" class="md-nav__link">
+      TP
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
+    
+    <label class="md-nav__link" for="nav-5">
+      Orchestration, Deployment, Kubernetes
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Orchestration, Deployment, Kubernetes" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Orchestration, Deployment, Kubernetes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_4_orchestration.html" class="md-nav__link">
+      Lecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_5_deployment.html" class="md-nav__link">
+      Interactive Hands On
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_5_bonus.html" class="md-nav__link">
+      TP
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="1_4_be.html" class="md-nav__link">
+      Cloud and Docker BE
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="1_6_conclusion.html" class="md-nav__link">
+      Data Computation Conclusion
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="1_7_readings.html" class="md-nav__link">
+      Data Computation Reading List
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-create-your-gcp-account" class="md-nav__link">
+    1. Create your GCP Account
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-install-google-cloud-sdk-configure-the-shell" class="md-nav__link">
+    2. Install Google Cloud SDK &amp; Configure the shell
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-my-first-vm-google-cloud-shell" class="md-nav__link">
+    3. My first "VM", Google Cloud Shell
+  </a>
+  
+    <nav class="md-nav" aria-label="3. My first "VM", Google Cloud Shell">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#intro-to-google-cloud-shell" class="md-nav__link">
+    Intro to Google Cloud Shell
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-to-google-cloud-shell" class="md-nav__link">
+    Connect to google cloud shell
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#explore-google-cloud-shell" class="md-nav__link">
+    Explore google cloud shell
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#a-demo-of-cloud-shell-web-preview" class="md-nav__link">
+    A demo of cloud shell web preview
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-google-colaboratory" class="md-nav__link">
+    4. Google Colaboratory
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Google Colaboratory">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#intro-description-of-google-colaboratory" class="md-nav__link">
+    Intro &amp; Description of Google Colaboratory
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#loading-jupyter-notebooks-interacting-with-google-drive" class="md-nav__link">
+    Loading jupyter notebooks, interacting with google drive
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#other-nice-usages-of-google-colab" class="md-nav__link">
+    Other nice usages of Google Colab
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/SupaeroDataScience/OBD/edit/master/docs/1_2_gcp_setup.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="gcp-initial-setup-first-steps">GCP Initial Setup &amp; First Steps<a class="headerlink" href="#gcp-initial-setup-first-steps" title="Permanent link">🔗</a></h1>
+<div class="admonition abstract">
+<p class="admonition-title">Abstract</p>
+<p>In this hands on you will configure your GCP account, the google cloud SDK and access the cloud console using Google Cloud Shell,
+You will also discover a very useful tool, a managed jupyter notebook service from google named Google Colab which may be very important for your future developments this year</p>
+</div>
+<h2 id="1-create-your-gcp-account">1. Create your GCP Account<a class="headerlink" href="#1-create-your-gcp-account" title="Permanent link">🔗</a></h2>
+<p><a href="https://cloud.google.com/docs/overview">Overview link</a></p>
+<ul>
+<li>Create an account within <a href="https://console.cloud.google.com">Google cloud Platform</a> using your ISAE e-mail</li>
+<li>Use the code given by Dennis to get your free credits</li>
+<li>You should have 300$ + a "free tier" available to you</li>
+<li>From <a href="https://console.cloud.google.com">the interface</a> you should <a href="https://cloud.google.com/resource-manager/docs/creating-managing-projects">create a project</a> with a name of your choice</li>
+</ul>
+<h2 id="2-install-google-cloud-sdk-configure-the-shell">2. Install Google Cloud SDK &amp; Configure the shell<a class="headerlink" href="#2-install-google-cloud-sdk-configure-the-shell" title="Permanent link">🔗</a></h2>
+<p>If you want to interact with GCP from your computer, you will need to install the <a href="https://cloud.google.com/sdk">Google Cloud SDK</a>, which will also install a shell if you are on windows</p>
+<p>If you don't, you will have to do everything from google cloud shell (it's not as easy), so I recommend installing the SDK.</p>
+<p>The best ways to interact with google cloud SDK is with a terminal so in that order:</p>
+<ul>
+<li>Linux (either VM or native): <a href="https://cloud.google.com/sdk/docs/install#linux">https://cloud.google.com/sdk/docs/install#linux</a></li>
+<li>MacOS: <a href="https://cloud.google.com/sdk/docs/install#mac">https://cloud.google.com/sdk/docs/install#mac</a></li>
+<li>Windows Subsystem for Linux: see Linux</li>
+<li>Windows: <a href="https://cloud.google.com/sdk/docs/install#windows">https://cloud.google.com/sdk/docs/install#windows</a></li>
+</ul>
+<p>If you are on windows, you should launch the google cloud sdk shell now,</p>
+<p>Then you can configure the <a href="https://cloud.google.com/sdk/docs/initializing">google cloud sdk</a> with your account</p>
+<h2 id="3-my-first-vm-google-cloud-shell">3. My first "VM", Google Cloud Shell<a class="headerlink" href="#3-my-first-vm-google-cloud-shell" title="Permanent link">🔗</a></h2>
+<h3 id="intro-to-google-cloud-shell">Intro to Google Cloud Shell<a class="headerlink" href="#intro-to-google-cloud-shell" title="Permanent link">🔗</a></h3>
+<ul>
+<li>Google Cloud Shell is a "managed VM" made available to interact with the GCP platform without needing to configure locally the google cloud sdk. It is useful if you only have a web browser, but it may not work and it's not as easy as using a local terminal</li>
+<li>Compared to configured a VM by yourself, this one comes loaded with developer tools and gcp authentification correctly set up, and thus is faster to use,</li>
+<li>However the main drawback to using it as a development machine is the available disk space limited to 5 Gb (not enough to build docker images for example)</li>
+<li>Here is the <a href="https://cloud.google.com/shell">description of Google Cloud Shell</a></li>
+<li>Look at the <a href="https://cloud.google.com/shell/docs/how-cloud-shell-works">documentation</a></li>
+</ul>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<ul>
+<li>Can you describe it with your own words ?</li>
+<li>What would be the closest service that you can find on GCP that is similar to cloud shell ?</li>
+</ul>
+</div>
+<h3 id="connect-to-google-cloud-shell">Connect to google cloud shell<a class="headerlink" href="#connect-to-google-cloud-shell" title="Permanent link">🔗</a></h3>
+<ul>
+<li>Follow <a href="https://cloud.google.com/shell/docs/using-cloud-shell">this guide</a> for connecting to google cloud shell using the browser</li>
+<li>If this doesn't work on your machine for whichever reason, there is a workaround which requires having installed the <code>google-cloud-sdOther references:k</code></li>
+</ul>
+<h3 id="explore-google-cloud-shell">Explore google cloud shell<a class="headerlink" href="#explore-google-cloud-shell" title="Permanent link">🔗</a></h3>
+<ul>
+<li>Check available disk space</li>
+</ul>
+<details class="note"><summary>Bash command to run</summary><p><code>df -h</code></p>
+</details>
+<ul>
+<li>Check the OS name</li>
+</ul>
+<details class="note"><summary>Bash command to run</summary><p><code>cat /etc/os-release</code></p>
+</details>
+<ul>
+<li>Check the CPU model</li>
+</ul>
+<details class="note"><summary>Bash command to run</summary><p><code>cat /proc/cpuinfo</code></p>
+</details>
+<ul>
+<li>This is the hardware model... how many cores do you have available ? Which amount of RAM ?</li>
+</ul>
+<details class="note"><summary>Help</summary><p><code>htop</code> will give you your current usage and available cores, or you can do <code>nproc</code></p>
+</details>
+<h3 id="a-demo-of-cloud-shell-web-preview">A demo of cloud shell web preview<a class="headerlink" href="#a-demo-of-cloud-shell-web-preview" title="Permanent link">🔗</a></h3>
+<p>We will install <a href="https://github.com/cdr/code-server/">Visual Studio Code Server</a>, which is a cloud-based text editor, on Cloud Shell and preview it from your browser.</p>
+<p>There is already a code editor in Google Cloud Shell (based on Theia) but we want to showcase the web preview as well, so we will do it manually,</p>
+<ul>
+<li>You may enable <a href="https://cloud.google.com/shell/docs/how-cloud-shell-works#boost_mode">boost mode</a></li>
+<li>Run <code>curl -fsSL https://code-server.dev/install.sh | sh</code> in your terminal to download &amp; install code server</li>
+<li>Run <code>code-server --port=8080</code> to start code server</li>
+<li>Shut it down (<code>CTRL+C</code>) then</li>
+<li>Fetch your password using <code>cat ~/.config/code-server/config.yaml</code></li>
+<li>Re-run it</li>
+<li><a href="https://cloud.google.com/shell/docs/using-web-preview">Open web preview on port 8080</a> and log in</li>
+<li>You should be able to open files, get a terminal from inside a vscode inside your browser inside a VM ... Magic isn't it ?</li>
+</ul>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>It is possible that the browser-based method does not work on your machine, there is a <a href="https://cloud.google.com/shell/docs/limitations#private_browsing_and_disabled_third-party_cookies">troubleshooting guide on this</a> (mainly it doesn't like too much privacy on your browser)</p>
+<p>The alternative solution would be to connect to it from your terminal / local shell using the google cloud sdk,</p>
+<p>Here is the documentation for <a href="https://cloud.google.com/sdk/gcloud/reference/alpha/cloud-shell">this</a></p>
+<p>Command to run in this case: <code>gcloud alpha cloud-shell ssh -- -L 8080:localhost:8080</code></p>
+</div>
+<h2 id="4-google-colaboratory">4. Google Colaboratory<a class="headerlink" href="#4-google-colaboratory" title="Permanent link">🔗</a></h2>
+<p>Here, you will look at Google Colaboratory, which is a very handy tool for doing data science work (based on jupyter notebooks) on the cloud, using a preconfigured instance (which can access a GPU). You will be able to store data on Google Drive and to share</p>
+<p><strong>I highly recommend using this for Jupyter based AML BE</strong>, but I invite you to discover google colab <em>at home, or during AML BE</em> because it's a useful tool but mastering it is not relevant for our cloud class</p>
+<h3 id="intro-description-of-google-colaboratory">Intro &amp; Description of Google Colaboratory<a class="headerlink" href="#intro-description-of-google-colaboratory" title="Permanent link">🔗</a></h3>
+<ul>
+<li>Open <a href="https://colab.research.google.com/notebooks/intro.ipynb">Google Colab</a></li>
+<li><a href="https://ledatascientist.com/google-colab-le-guide-ultime/">Some intro</a>, <a href="https://towardsdatascience.com/getting-started-with-google-colab-f2fff97f594c">another one</a></li>
+</ul>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<ul>
+<li>Can you describe what it is ?</li>
+<li>Is it IaaS ? PaaS ? SaaS ? why exactly ?</li>
+</ul>
+</div>
+<div class="admonition info">
+<p class="admonition-title">Info</p>
+<p>Colaboratory, or "Colab" for short, allows you to write and execute Python in your browser, with</p>
+<ul>
+<li>Zero configuration required</li>
+<li>Free access to GPUs</li>
+<li>Easy sharing</li>
+</ul>
+<p>It offers a "jupyter notebook - like" interface, and allows to install your own dependencies by running bash commands inside the VM, with connection to google drive, google sheets</p>
+<p>You can manipulate the notebooks from your Google Drive and share it like it was a GDoc document</p>
+<p>It's essentially between SaaS and PaaS, it offers you a development platform without you having to manage anything except your code and your data (which are both data from the cloud provider point of view)</p>
+</div>
+<h3 id="loading-jupyter-notebooks-interacting-with-google-drive">Loading jupyter notebooks, interacting with google drive<a class="headerlink" href="#loading-jupyter-notebooks-interacting-with-google-drive" title="Permanent link">🔗</a></h3>
+<ul>
+<li>Open a notebook you previously ran on your computer (from AML class), you can <a href="https://colab.research.google.com/github/googlecolab/colabtools/blob/master/notebooks/colab-github-demo.ipOther references:ynb">run a notebook on github directly in google colab</a></li>
+<li>Try to run it inside google colab</li>
+<li>Link <a href="https://colab.research.google.com/notebooks/io.ipynb">google colab and google drive</a> and upload something on google drive (like an image) and display in on google colab</li>
+</ul>
+<h3 id="other-nice-usages-of-google-colab">Other nice usages of Google Colab<a class="headerlink" href="#other-nice-usages-of-google-colab" title="Permanent link">🔗</a></h3>
+<ul>
+<li><a href="https://colab.research.google.com/notebooks/markdown_guide.ipynb">Writing markdown to generate reports</a></li>
+<li><a href="https://colab.research.google.com/notebooks/snippets/importing_libraries.ipynb">Installing custom dependencies</a></li>
+</ul>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="1_2_cloud.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                Lectures
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="1_2_gcp_handson.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                TP 2 GCP Hands On
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="assets/javascripts/vendor.08c56446.min.js"></script>
+      <script src="assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: ".",
+          features: ['toc.autohide'],
+          search: Object.assign({
+            worker: "assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

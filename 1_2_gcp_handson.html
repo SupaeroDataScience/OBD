@@ -1,0 +1,1106 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Big Data class at ISAE-Supaero as part of the SDD program">
+      
+      
+      
+      
+        <link rel="canonical" href="https://supaerodatascience.github.io/OBD/1_2_gcp_handson.html">
+      
+      <link rel="shortcut icon" href="https://raw.githubusercontent.com/SupaeroDataScience/OBD/main/src/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.3">
+    
+    
+      
+        <title>TP 2 GCP Hands On - Tools of Big Data</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.3b61ea93.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.39b8e14a.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#02a6f2">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#gcp-hands-on-first-vms-google-cloud-storage" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://supaerodatascience.github.io/OBD/" title="Tools of Big Data" class="md-header-nav__button md-logo" aria-label="Tools of Big Data">
+      
+  <img src="https://raw.githubusercontent.com/SupaeroDataScience/OBD/main/src/favicon.ico" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Tools of Big Data
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              TP 2 GCP Hands On
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/SupaeroDataScience/OBD/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SupaeroDataScience/OBD
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://supaerodatascience.github.io/OBD/" title="Tools of Big Data" class="md-nav__button md-logo" aria-label="Tools of Big Data">
+      
+  <img src="https://raw.githubusercontent.com/SupaeroDataScience/OBD/main/src/favicon.ico" alt="logo">
+
+    </a>
+    Tools of Big Data
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/SupaeroDataScience/OBD/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SupaeroDataScience/OBD
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+    
+    <label class="md-nav__link" for="nav-2">
+      Data Computation
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Data Computation" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Data Computation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_1_overview.html" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_1_presentation.html" class="md-nav__link">
+      Presentation
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  
+
+
+  
+  <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" checked>
+    
+    <label class="md-nav__link" for="nav-3">
+      Cloud Computing
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Cloud Computing" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Cloud Computing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_2_cloud.html" class="md-nav__link">
+      Lectures
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_2_gcp_setup.html" class="md-nav__link">
+      TP 1 GCP Initial Setup & First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        TP 2 GCP Hands On
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="1_2_gcp_handson.html" class="md-nav__link md-nav__link--active">
+      TP 2 GCP Hands On
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-run-it" class="md-nav__link">
+    How to run it ?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-my-first-google-compute-engine-instance" class="md-nav__link">
+    1. My first Google Compute Engine Instance
+  </a>
+  
+    <nav class="md-nav" aria-label="1. My first Google Compute Engine Instance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-my-vm-using-the-console" class="md-nav__link">
+    Creating my VM using the console
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connecting-to-ssh" class="md-nav__link">
+    Connecting to SSH
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-magic-of-redimensioning-vms" class="md-nav__link">
+    The magic of redimensioning VMs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transfering-files-from-the-computer-to-this-machine" class="md-nav__link">
+    Transfering files from the computer to this machine
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-interacting-with-google-cloud-storage" class="md-nav__link">
+    2. Interacting with Google Cloud Storage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-google-compute-engine-from-the-cli-and-deep-learning-vms" class="md-nav__link">
+    3. Google Compute Engine from the CLI and "deep learning VMs"
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Google Compute Engine from the CLI and "deep learning VMs"">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-google-compute-engine-instance-with-a-gpu-using-the-command-line" class="md-nav__link">
+    Create a google compute engine instance with a GPU using the command line
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-to-ssh-to-this-machine-and-query-the-gpu" class="md-nav__link">
+    Connect to ssh to this machine and query the gpu
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shut-it-down-remove-the-gpu-and-restart-it" class="md-nav__link">
+    Shut it down, remove the gpu and restart it
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-back-to-the-vm" class="md-nav__link">
+    Connect back to the VM
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-introduction-to-infrastructure-as-code" class="md-nav__link">
+    4. Introduction to infrastructure as code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-persistent-sessions-with-tmux" class="md-nav__link">
+    5. Persistent sessions with TMUX
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+    
+    <label class="md-nav__link" for="nav-4">
+      Containers, Docker
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Containers, Docker" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Containers, Docker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_3_containers.html" class="md-nav__link">
+      Lecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_3_docker.html" class="md-nav__link">
+      TP
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
+    
+    <label class="md-nav__link" for="nav-5">
+      Orchestration, Deployment, Kubernetes
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Orchestration, Deployment, Kubernetes" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Orchestration, Deployment, Kubernetes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_4_orchestration.html" class="md-nav__link">
+      Lecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_5_deployment.html" class="md-nav__link">
+      Interactive Hands On
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_5_bonus.html" class="md-nav__link">
+      TP
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="1_4_be.html" class="md-nav__link">
+      Cloud and Docker BE
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="1_6_conclusion.html" class="md-nav__link">
+      Data Computation Conclusion
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="1_7_readings.html" class="md-nav__link">
+      Data Computation Reading List
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-run-it" class="md-nav__link">
+    How to run it ?
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-my-first-google-compute-engine-instance" class="md-nav__link">
+    1. My first Google Compute Engine Instance
+  </a>
+  
+    <nav class="md-nav" aria-label="1. My first Google Compute Engine Instance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#creating-my-vm-using-the-console" class="md-nav__link">
+    Creating my VM using the console
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connecting-to-ssh" class="md-nav__link">
+    Connecting to SSH
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#the-magic-of-redimensioning-vms" class="md-nav__link">
+    The magic of redimensioning VMs
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#transfering-files-from-the-computer-to-this-machine" class="md-nav__link">
+    Transfering files from the computer to this machine
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-interacting-with-google-cloud-storage" class="md-nav__link">
+    2. Interacting with Google Cloud Storage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-google-compute-engine-from-the-cli-and-deep-learning-vms" class="md-nav__link">
+    3. Google Compute Engine from the CLI and "deep learning VMs"
+  </a>
+  
+    <nav class="md-nav" aria-label="3. Google Compute Engine from the CLI and "deep learning VMs"">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#create-a-google-compute-engine-instance-with-a-gpu-using-the-command-line" class="md-nav__link">
+    Create a google compute engine instance with a GPU using the command line
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-to-ssh-to-this-machine-and-query-the-gpu" class="md-nav__link">
+    Connect to ssh to this machine and query the gpu
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#shut-it-down-remove-the-gpu-and-restart-it" class="md-nav__link">
+    Shut it down, remove the gpu and restart it
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#connect-back-to-the-vm" class="md-nav__link">
+    Connect back to the VM
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-introduction-to-infrastructure-as-code" class="md-nav__link">
+    4. Introduction to infrastructure as code
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-persistent-sessions-with-tmux" class="md-nav__link">
+    5. Persistent sessions with TMUX
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/SupaeroDataScience/OBD/edit/master/docs/1_2_gcp_handson.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="gcp-hands-on-first-vms-google-cloud-storage">GCP Hands On, first VMs, Google Cloud Storage<a class="headerlink" href="#gcp-hands-on-first-vms-google-cloud-storage" title="Permanent link">🔗</a></h1>
+<h2 id="how-to-run-it">How to run it ?<a class="headerlink" href="#how-to-run-it" title="Permanent link">🔗</a></h2>
+<p>The easiest way to run this workshop is to have google cloud sdk on your machine,</p>
+<p>However, like demonstrated earlier, you can use google cloud shell as the "front end" for GCP to run all gcloud commands from inside this VM</p>
+<p>However you have to have google chrome without too much privacy tools and a good wifi without firewall for it to work perfectly :) </p>
+<p>SSH from the cloud shell should also be possible from google cloud shell, and you will be able to use the web preview from your cloud shell to display a port on another machine (double ssh tunnel !)</p>
+<p>Otherwise for SSHing you will be able to use the web based ssh tools and port forwarding tools of google cloud platform: <a href="https://cloud.google.com/compute/docs/ssh-in-browser">https://cloud.google.com/compute/docs/ssh-in-browser</a></p>
+<h2 id="1-my-first-google-compute-engine-instance">1. My first Google Compute Engine Instance<a class="headerlink" href="#1-my-first-google-compute-engine-instance" title="Permanent link">🔗</a></h2>
+<p>First, we will make our first steps by creating a compute engine instance (a vm) using the console, connecting to it via SSH, interacting with it, uploading some files, and we will shut it down and make the magic happen by resizing it</p>
+<ul>
+<li>What is <a href="https://cloud.google.com/compute/docs/concepts">google cloud compute engine ?</a> try to describe it with your own words</li>
+</ul>
+<h3 id="creating-my-vm-using-the-console">Creating my VM using the console<a class="headerlink" href="#creating-my-vm-using-the-console" title="Permanent link">🔗</a></h3>
+<ul>
+<li>Follow <a href="https://codelabs.developers.google.com/codelabs/cloud-create-a-vm">this codelab</a> to create your VM</li>
+<li>Create the following instance</li>
+<li>type: n1-standard-2</li>
+<li>zone: europe-west4-a (the netherlands)</li>
+<li>os: ubuntu 20.04</li>
+<li>boot disk size: 10 Gb</li>
+<li>Name it however you see fit</li>
+<li><strong>DO NOT SHUT IT DOWN</strong> for now</li>
+</ul>
+<h3 id="connecting-to-ssh">Connecting to SSH<a class="headerlink" href="#connecting-to-ssh" title="Permanent link">🔗</a></h3>
+<ul>
+<li>Connect to ssh from google cloud shell or your terminal to the machine</li>
+</ul>
+<details><summary>Solution</summary>
+
+      `gcloud compute ssh {USER}@{MACHINE NAME}`
+
+  </details>
+
+<ul>
+<li>Check available disk space</li>
+</ul>
+<details><summary>Bash command to run</summary>
+
+    `df -h`
+
+  </details>
+
+<ul>
+<li>Check the OS name</li>
+</ul>
+<details><summary>Bash command to run</summary>
+
+    `cat /etc/os-release`
+
+  </details>
+
+<ul>
+<li>Check the CPU model</li>
+</ul>
+<details><summary>Solution</summary>
+
+    `cat /proc/cpuinfo`
+
+  </details>
+
+<ul>
+<li>Check instance google cloud properties</li>
+</ul>
+<details><summary>Solution</summary>
+
+    `cat /proc/cpuinfo`
+
+  </details>
+
+<h3 id="the-magic-of-redimensioning-vms">The magic of redimensioning VMs<a class="headerlink" href="#the-magic-of-redimensioning-vms" title="Permanent link">🔗</a></h3>
+<ul>
+<li>Shutdown the VM (from the web browser), check the previous codelab to see how to do it</li>
+<li>Select it and click on EDIT</li>
+<li>Change the machine type to <code>n1-standard-4</code> (<a href="https://cloud.google.com/compute/docs/instances/changing-machine-type-of-stopped-instance">link to documentation</a>)</li>
+<li>Relaunch it, reconnect to it and try to list the CPUs &amp; RAM amount again</li>
+</ul>
+<p>Magic isn't it ? </p>
+<p>Note: If you had any files and specific configuration, they would still be here !</p>
+<h3 id="transfering-files-from-the-computer-to-this-machine">Transfering files from the computer to this machine<a class="headerlink" href="#transfering-files-from-the-computer-to-this-machine" title="Permanent link">🔗</a></h3>
+<ul>
+<li>
+<p>We will use the terminal to transfer some files <strong><em>from</em>* your computer </strong>to** this machine,</p>
+</li>
+<li>
+<p toc="toc">Follow <a href="https://cloud.google.com/compute/docs/instances/transfer-files#transfergcloud">this link</a> to learn how to use the gcloud cli tool to transfer files to your instance
+ TOC</p>
+</li>
+<li>
+<p>For experts, it's possible to do it manually using <a href="https://phoenixnap.com/kb/how-to-rsync-over-ssh">rsync from ssh</a> or <a href="https://cloud.google.com/compute/docs/instances/transfer-files#scp">scp</a></p>
+</li>
+<li>
+<p>Transfer some files to your <code>/home/${USER}</code> directory</p>
+</li>
+<li>
+<p>List them from your instance (<code>ls</code>)</p>
+</li>
+</ul>
+<p>How do we do the opposite ?</p>
+<p>See below,</p>
+<h2 id="2-interacting-with-google-cloud-storage">2. Interacting with Google Cloud Storage<a class="headerlink" href="#2-interacting-with-google-cloud-storage" title="Permanent link">🔗</a></h2>
+<p>Here we will discover google cloud storage, upload some files from your computer and download them from your instance in the cloud</p>
+<ul>
+<li>
+<p>What is <a href="https://cloud.google.com/storage">Google Cloud Storage ?</a> Try to describe it with your own words</p>
+</li>
+<li>
+<p>This <a href="https://codelabs.developers.google.com/codelabs/cloud-upload-objects-to-cloud-storage">codelab</a> will guide you through the basics of google cloud storage</p>
+</li>
+<li>
+<p>Use this codelab something from your computer to google cloud storage from the web browser. <strong>DO NOT DELETE THE FILES YET</strong></p>
+</li>
+</ul>
+<p>Now we will download it using the google cloud CLI tool,</p>
+<ul>
+<li>Here's <a href="https://cloud.google.com/storage/docs/uploading-objects#gsutil">the documentation</a></li>
+<li>List the content of the bucket you just created (if you deleted it previously, create a new one)</li>
+<li>Upload a file to a bucket</li>
+<li>Download a file from a bucket</li>
+</ul>
+<p>What if we want to do the same from the VM ?</p>
+<ul>
+<li>
+<p>Now go back to your machine</p>
+</li>
+<li>
+<p>Try to list bucket, download and upload files</p>
+</li>
+<li>
+<p>Is it possible ?</p>
+</li>
+<li>
+<p>If not, it's because you have to allow the instance to access google cloud storage</p>
+</li>
+<li>
+<p>Shutdown the VM and edit it (like we did when we resized the instance)</p>
+</li>
+<li>
+<p>Check "access scopes", select "set access for each api", and select "storage / admin"</p>
+</li>
+<li>
+<p>Now restart you machine, connect back to it. You should be able to upload to google cloud storage now files now</p>
+</li>
+<li>
+<p>Now you can delete the bucket you just created</p>
+</li>
+<li>
+<p>You can delete the VM as well, we will not use it</p>
+</li>
+</ul>
+<h2 id="3-google-compute-engine-from-the-cli-and-deep-learning-vms">3. Google Compute Engine from the CLI and "deep learning VMs"<a class="headerlink" href="#3-google-compute-engine-from-the-cli-and-deep-learning-vms" title="Permanent link">🔗</a></h2>
+<p>Here we will use the google cloud sdk to create a more complex VM with a pre-installed image and connect to its jupyter server</p>
+<p>This will be useful for the next part of our workshop because both git and docker are already installed !</p>
+<p>Google Cloud Platform comes with a set of services targeted at data scientists called <a href="https://cloud.google.com/ai-platform">AI Platform</a>, among them are <a href="https://cloud.google.com/ai-platform/deep-learning-vm/docs">Deep Learning VMs</a> which are essentially preinstalled VMs (more or less the same configuration as google colab) with some bonuses.</p>
+<ul>
+<li>What are "Deep Learning VMs" ? Try to use your own words</li>
+<li>What would be the alternative if you wanted to get a machine with the same installation ?</li>
+</ul>
+<h3 id="create-a-google-compute-engine-instance-with-a-gpu-using-the-command-line">Create a google compute engine instance with a GPU using the command line<a class="headerlink" href="#create-a-google-compute-engine-instance-with-a-gpu-using-the-command-line" title="Permanent link">🔗</a></h3>
+<p><strong>This is very important for the next workshop</strong></p>
+<p>Instead of using the browser to create this machine, we will be using the <a href="https://cloud.google.com/ai-platform/deep-learning-vm/docs/cli">CLI to create instances</a></p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">INSTANCE_NAME</span><span class="o">=</span><span class="s2">&quot;fch-dlvm-1&quot;</span> <span class="c1"># RENAME THIS !!!!!!!!!!</span>
+
+gcloud compute instances create <span class="nv">$INSTANCE_NAME</span> <span class="se">\</span>
+        --zone<span class="o">=</span><span class="s2">&quot;europe-west4-a&quot;</span> <span class="se">\</span>
+        --image-family<span class="o">=</span><span class="s2">&quot;common-cu100&quot;</span> <span class="se">\</span>
+        --image-project<span class="o">=</span>deeplearning-platform-release <span class="se">\</span>
+        --maintenance-policy<span class="o">=</span>TERMINATE <span class="se">\</span>
+        --accelerator<span class="o">=</span><span class="s2">&quot;type=nvidia-tesla-p100,count=1&quot;</span> <span class="se">\</span>
+        --scopes<span class="o">=</span><span class="s2">&quot;storage-rw&quot;</span> <span class="se">\</span>
+        --machine-type<span class="o">=</span><span class="s2">&quot;n1-standard-8&quot;</span> <span class="se">\</span>
+        --boot-disk-size<span class="o">=</span>120GB <span class="se">\</span>
+        --metadata<span class="o">=</span><span class="s2">&quot;install-nvidia-driver=True&quot;</span>
+</code></pre></div>
+<p><strong>If you can't access GPU, remove the line regarding gpu for now, and go and <a href="https://stackoverflow.com/questions/45227064/how-to-request-gpu-quota-increase-in-google-cloud">request a quota increase</a></strong> for your project so that you will be able to access gpus later (request the corresponding GPU)</p>
+<p>In that case, change <code>common-cu-100</code> for <code>common-cpu</code> and remove the metadata line</p>
+<ul>
+<li>Notice the similarities between the first VM you created and this one,</li>
+<li>What changed ?</li>
+<li>If you want to learn more about compute images, image families etc... <a href="https://cloud.google.com/ai-platform/deep-learning-vm/docs/concepts-images">go here</a></li>
+<li>Metadata command is a bit of magic provided by google to automatically install GPU drivers (very useful !)</li>
+</ul>
+<h3 id="connect-to-ssh-to-this-machine-and-query-the-gpu">Connect to ssh to this machine and query the gpu<a class="headerlink" href="#connect-to-ssh-to-this-machine-and-query-the-gpu" title="Permanent link">🔗</a></h3>
+<ul>
+<li>Connect to your instance using the gcloud cli &amp; ssh</li>
+<li>To query if there is a GPU recognized, you have to run <code>nvidia-smi</code></li>
+</ul>
+<h3 id="shut-it-down-remove-the-gpu-and-restart-it">Shut it down, remove the gpu and restart it<a class="headerlink" href="#shut-it-down-remove-the-gpu-and-restart-it" title="Permanent link">🔗</a></h3>
+<p>This time you have to EDIT the VM and remove the GPU instead of resizing the number of CPUs</p>
+<h3 id="connect-back-to-the-vm">Connect back to the VM<a class="headerlink" href="#connect-back-to-the-vm" title="Permanent link">🔗</a></h3>
+<ul>
+<li>Relaunch the previous VM and connect to it using ssh</li>
+<li>
+<p>This time, you will <a href="https://cloud.google.com/ai-platform/deep-learning-vm/docs">forward some ports</a> as well
+<br />
+<details><summary>Solution</summary>
+ TOC
+{:toc}
+    `gcloud compute ssh user@machine-name --zone europe-west4-a -- -L 8080:localhost:8080
+
+  </details>
+</p>
+</li>
+<li>
+<p>Go to your local browser and type <code>http://localhost:8080</code>, you should be in a jupyter notebook under the user <code>jupyter</code></p>
+</li>
+</ul>
+<p>You can try to play with the jupyter lab (that has a code editor and terminal capabilities) to get a feel of manipulating a remote instance</p>
+<p>Try to <code>pip3 list</code> to check all dependencies installed !</p>
+<p><strong>DO NOT DELETE THE INSTANCE FOR NOW YOU WILL NEED IT LATER</strong></p>
+<h2 id="4-introduction-to-infrastructure-as-code">4. Introduction to infrastructure as code<a class="headerlink" href="#4-introduction-to-infrastructure-as-code" title="Permanent link">🔗</a></h2>
+<ul>
+<li>
+<p><a href="https://cloud.google.com/deployment-manager/docs/quickstart">This tutorial</a> will guide you through google cloud deployment manager, which is a way to deploy google compute engine instances using configuration files</p>
+</li>
+<li>
+<p>Don't forget to adapt machine configurations and zone to your use case (see above)</p>
+</li>
+</ul>
+<h2 id="5-persistent-sessions-with-tmux">5. Persistent sessions with TMUX<a class="headerlink" href="#5-persistent-sessions-with-tmux" title="Permanent link">🔗</a></h2>
+<p><a href="https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/">https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/</a></p>
+<ul>
+<li>Connect to your instance using SSH</li>
+<li>Question: What happens if you start a long computation and disconnect ?</li>
+<li>Check that tmux is installed on the remote instance (run <code>tmux</code>). if not <a href="https://computingforgeeks.com/linux-tmux-cheat-sheet/">install it</a></li>
+<li>Follow this tutorial: https://www.hamvocke.com/blog/a-quick-and-easy-guide-to-tmux/</li>
+<li>To check you have understood you should be able to:</li>
+<li>Connect to your remote instance with ssh</li>
+<li>Start a tmux session</li>
+<li>Launch a process (for example <code>top</code>) inside it</li>
+<li>Detach from the session (<code>CTRL+B :detach</code>)</li>
+<li>Kill the ssh connection</li>
+<li>Connect again</li>
+<li><code>tmux attach</code> to your session</li>
+<li>Your process should still be here !</li>
+</ul>
+<p>Congratulations :)</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="1_2_gcp_setup.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                TP 1 GCP Initial Setup & First Steps
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="1_3_containers.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Lecture
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="assets/javascripts/vendor.08c56446.min.js"></script>
+      <script src="assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: ".",
+          features: ['toc.autohide'],
+          search: Object.assign({
+            worker: "assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>

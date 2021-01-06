@@ -1,0 +1,1146 @@
+
+<!doctype html>
+<html lang="en" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="Big Data class at ISAE-Supaero as part of the SDD program">
+      
+      
+      
+      
+        <link rel="canonical" href="https://supaerodatascience.github.io/OBD/1_4_be.html">
+      
+      <link rel="shortcut icon" href="https://raw.githubusercontent.com/SupaeroDataScience/OBD/main/src/favicon.ico">
+      <meta name="generator" content="mkdocs-1.1.2, mkdocs-material-6.2.3">
+    
+    
+      
+        <title>Cloud and Docker BE - Tools of Big Data</title>
+      
+    
+    
+      <link rel="stylesheet" href="assets/stylesheets/main.3b61ea93.min.css">
+      
+        
+        <link rel="stylesheet" href="assets/stylesheets/palette.39b8e14a.min.css">
+        
+          
+          
+          <meta name="theme-color" content="#02a6f2">
+        
+      
+    
+    
+    
+      
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,400,400i,700%7CRoboto+Mono&display=fallback">
+        <style>body,input{font-family:"Roboto",-apple-system,BlinkMacSystemFont,Helvetica,Arial,sans-serif}code,kbd,pre{font-family:"Roboto Mono",SFMono-Regular,Consolas,Menlo,monospace}</style>
+      
+    
+    
+    
+    
+      
+    
+    
+  </head>
+  
+  
+    
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="" data-md-color-primary="light-blue" data-md-color-accent="light-blue">
+      
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#bureau-detudes-cloud-docker" class="md-skip">
+          Skip to content
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header-nav md-grid" aria-label="Header">
+    <a href="https://supaerodatascience.github.io/OBD/" title="Tools of Big Data" class="md-header-nav__button md-logo" aria-label="Tools of Big Data">
+      
+  <img src="https://raw.githubusercontent.com/SupaeroDataScience/OBD/main/src/favicon.ico" alt="logo">
+
+    </a>
+    <label class="md-header-nav__button md-icon" for="__drawer">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3V6m0 5h18v2H3v-2m0 5h18v2H3v-2z"/></svg>
+    </label>
+    <div class="md-header-nav__title" data-md-component="header-title">
+      <div class="md-header-nav__ellipsis">
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            Tools of Big Data
+          </span>
+        </div>
+        <div class="md-header-nav__topic">
+          <span class="md-ellipsis">
+            
+              Cloud and Docker BE
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      <label class="md-header-nav__button md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+      </label>
+      
+<div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Search" placeholder="Search" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" data-md-state="active" required>
+      <label class="md-search__icon md-icon" for="__search">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0116 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.516 6.516 0 019.5 16 6.5 6.5 0 013 9.5 6.5 6.5 0 019.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5z"/></svg>
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+      </label>
+      <button type="reset" class="md-search__icon md-icon" aria-label="Clear" data-md-component="search-reset" tabindex="-1">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12 19 6.41z"/></svg>
+      </button>
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Initializing search
+          </div>
+          <ol class="md-search-result__list"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+      <div class="md-header-nav__source">
+        
+<a href="https://github.com/SupaeroDataScience/OBD/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SupaeroDataScience/OBD
+  </div>
+</a>
+      </div>
+    
+  </nav>
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+
+
+<nav class="md-nav md-nav--primary" aria-label="Navigation" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="https://supaerodatascience.github.io/OBD/" title="Tools of Big Data" class="md-nav__button md-logo" aria-label="Tools of Big Data">
+      
+  <img src="https://raw.githubusercontent.com/SupaeroDataScience/OBD/main/src/favicon.ico" alt="logo">
+
+    </a>
+    Tools of Big Data
+  </label>
+  
+    <div class="md-nav__source">
+      
+<a href="https://github.com/SupaeroDataScience/OBD/" title="Go to repository" class="md-source">
+  <div class="md-source__icon md-icon">
+    
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path d="M439.55 236.05L244 40.45a28.87 28.87 0 00-40.81 0l-40.66 40.63 51.52 51.52c27.06-9.14 52.68 16.77 43.39 43.68l49.66 49.66c34.23-11.8 61.18 31 35.47 56.69-26.49 26.49-70.21-2.87-56-37.34L240.22 199v121.85c25.3 12.54 22.26 41.85 9.08 55a34.34 34.34 0 01-48.55 0c-17.57-17.6-11.07-46.91 11.25-56v-123c-20.8-8.51-24.6-30.74-18.64-45L142.57 101 8.45 235.14a28.86 28.86 0 000 40.81l195.61 195.6a28.86 28.86 0 0040.8 0l194.69-194.69a28.86 28.86 0 000-40.81z"/></svg>
+  </div>
+  <div class="md-source__repository">
+    SupaeroDataScience/OBD
+  </div>
+</a>
+    </div>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="index.html" class="md-nav__link">
+      Overview
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-2" type="checkbox" id="nav-2" >
+    
+    <label class="md-nav__link" for="nav-2">
+      Data Computation
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Data Computation" data-md-level="1">
+      <label class="md-nav__title" for="nav-2">
+        <span class="md-nav__icon md-icon"></span>
+        Data Computation
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_1_overview.html" class="md-nav__link">
+      Introduction
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_1_presentation.html" class="md-nav__link">
+      Presentation
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-3" type="checkbox" id="nav-3" >
+    
+    <label class="md-nav__link" for="nav-3">
+      Cloud Computing
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Cloud Computing" data-md-level="1">
+      <label class="md-nav__title" for="nav-3">
+        <span class="md-nav__icon md-icon"></span>
+        Cloud Computing
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_2_cloud.html" class="md-nav__link">
+      Lectures
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_2_gcp_setup.html" class="md-nav__link">
+      TP 1 GCP Initial Setup & First Steps
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_2_gcp_handson.html" class="md-nav__link">
+      TP 2 GCP Hands On
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-4" type="checkbox" id="nav-4" >
+    
+    <label class="md-nav__link" for="nav-4">
+      Containers, Docker
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Containers, Docker" data-md-level="1">
+      <label class="md-nav__title" for="nav-4">
+        <span class="md-nav__icon md-icon"></span>
+        Containers, Docker
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_3_containers.html" class="md-nav__link">
+      Lecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_3_docker.html" class="md-nav__link">
+      TP
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  
+  <li class="md-nav__item md-nav__item--nested">
+    
+    
+      <input class="md-nav__toggle md-toggle" data-md-toggle="nav-5" type="checkbox" id="nav-5" >
+    
+    <label class="md-nav__link" for="nav-5">
+      Orchestration, Deployment, Kubernetes
+      <span class="md-nav__icon md-icon"></span>
+    </label>
+    <nav class="md-nav" aria-label="Orchestration, Deployment, Kubernetes" data-md-level="1">
+      <label class="md-nav__title" for="nav-5">
+        <span class="md-nav__icon md-icon"></span>
+        Orchestration, Deployment, Kubernetes
+      </label>
+      <ul class="md-nav__list" data-md-scrollfix>
+        
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_4_orchestration.html" class="md-nav__link">
+      Lecture
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_5_deployment.html" class="md-nav__link">
+      Interactive Hands On
+    </a>
+  </li>
+
+        
+          
+          
+          
+
+
+
+  <li class="md-nav__item">
+    <a href="1_5_bonus.html" class="md-nav__link">
+      TP
+    </a>
+  </li>
+
+        
+      </ul>
+    </nav>
+  </li>
+
+    
+      
+      
+      
+
+
+  
+
+
+  <li class="md-nav__item md-nav__item--active">
+    
+    <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+    
+      
+    
+    
+      <label class="md-nav__link md-nav__link--active" for="__toc">
+        Cloud and Docker BE
+        <span class="md-nav__icon md-icon"></span>
+      </label>
+    
+    <a href="1_4_be.html" class="md-nav__link md-nav__link--active">
+      Cloud and Docker BE
+    </a>
+    
+      
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives-of-this-be" class="md-nav__link">
+    Objectives of this BE
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-run-this-be" class="md-nav__link">
+    How to run this BE
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#team-composition" class="md-nav__link">
+    Team composition
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-share-access-to-projects" class="md-nav__link">
+    1 - Share access to projects
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-create-google-compute-engine-vm" class="md-nav__link">
+    2 - Create Google Compute Engine VM
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-connect-using-ssh-to-the-instance" class="md-nav__link">
+    3 - Connect using SSH to the instance
+  </a>
+  
+    <nav class="md-nav" aria-label="3 - Connect using SSH to the instance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-a-with-google-cloud-sdk" class="md-nav__link">
+    Option A with google cloud sdk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-b-with-the-web-browser-google-cloud-shell" class="md-nav__link">
+    Option B with the web browser (&amp; google cloud shell)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-get-the-necessary-resources-from-google-cloud-storage" class="md-nav__link">
+    4 - Get the necessary resources from Google Cloud Storage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-build-your-docker-image" class="md-nav__link">
+    5 - Build your docker image
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-push-your-docker-image-in-the-container-registry" class="md-nav__link">
+    6 - Push your Docker image in the Container Registry
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-pull-docker-images-from-your-teammates" class="md-nav__link">
+    7 - Pull Docker Images from your teammates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-run-docker-containers-from-their-docker-images" class="md-nav__link">
+    8 - Run Docker Containers from their Docker Images
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-display-the-results-share-them" class="md-nav__link">
+    9 - Display the results &amp; share them
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-cleanup-the-gcp-project" class="md-nav__link">
+    10. Cleanup the GCP project
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+    
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="1_6_conclusion.html" class="md-nav__link">
+      Data Computation Conclusion
+    </a>
+  </li>
+
+    
+      
+      
+      
+
+
+
+  <li class="md-nav__item">
+    <a href="1_7_readings.html" class="md-nav__link">
+      Data Computation Reading List
+    </a>
+  </li>
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#objectives-of-this-be" class="md-nav__link">
+    Objectives of this BE
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#how-to-run-this-be" class="md-nav__link">
+    How to run this BE
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#team-composition" class="md-nav__link">
+    Team composition
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#1-share-access-to-projects" class="md-nav__link">
+    1 - Share access to projects
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-create-google-compute-engine-vm" class="md-nav__link">
+    2 - Create Google Compute Engine VM
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-connect-using-ssh-to-the-instance" class="md-nav__link">
+    3 - Connect using SSH to the instance
+  </a>
+  
+    <nav class="md-nav" aria-label="3 - Connect using SSH to the instance">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#option-a-with-google-cloud-sdk" class="md-nav__link">
+    Option A with google cloud sdk
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#option-b-with-the-web-browser-google-cloud-shell" class="md-nav__link">
+    Option B with the web browser (&amp; google cloud shell)
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-get-the-necessary-resources-from-google-cloud-storage" class="md-nav__link">
+    4 - Get the necessary resources from Google Cloud Storage
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-build-your-docker-image" class="md-nav__link">
+    5 - Build your docker image
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-push-your-docker-image-in-the-container-registry" class="md-nav__link">
+    6 - Push your Docker image in the Container Registry
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-pull-docker-images-from-your-teammates" class="md-nav__link">
+    7 - Pull Docker Images from your teammates
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-run-docker-containers-from-their-docker-images" class="md-nav__link">
+    8 - Run Docker Containers from their Docker Images
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#9-display-the-results-share-them" class="md-nav__link">
+    9 - Display the results &amp; share them
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#10-cleanup-the-gcp-project" class="md-nav__link">
+    10. Cleanup the GCP project
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          <div class="md-content">
+            <article class="md-content__inner md-typeset">
+              
+                
+                  <a href="https://github.com/SupaeroDataScience/OBD/edit/master/docs/1_4_be.md" title="Edit this page" class="md-content__button md-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25z"/></svg>
+                  </a>
+                
+                
+                <h1 id="bureau-detudes-cloud-docker">Bureau d'études Cloud &amp; Docker<a class="headerlink" href="#bureau-detudes-cloud-docker" title="Permanent link">🔗</a></h1>
+<h2 id="objectives-of-this-be">Objectives of this BE<a class="headerlink" href="#objectives-of-this-be" title="Permanent link">🔗</a></h2>
+<p>This Bureau d'études (BE, for short) will guide you through the essential notions to be able to manipulate with regard to cloud computer and docker,</p>
+<p>We will illustrate the following:</p>
+<ul>
+<li>Creation and ssh connection to virtual machine instances</li>
+<li>Usage of managed storage capabilities</li>
+<li>Creating your own docker images</li>
+<li>Exchanging docker images through a Container Registry</li>
+<li>Pulling and running docker images created by your teammates</li>
+</ul>
+<p>In particular, this workflow:</p>
+<p><img alt="workflow" src="../lectures/static/img/docker-jworkflow.jpg" /></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>Please read all the text in the question before executing the step-by-step instructions because there might be help or indications after the instructions.</p>
+</div>
+<h2 id="how-to-run-this-be">How to run this BE<a class="headerlink" href="#how-to-run-this-be" title="Permanent link">🔗</a></h2>
+<p>There are two ways of interacting with google cloud platform,</p>
+<ul>
+<li>Locally with the google-cloud-sdk (4G network &amp; gcloud installed)</li>
+<li>With the web-based Google Coud Shell</li>
+</ul>
+<p>We will be using the <code>gcloud</code> CLI in Google Cloud Shell or the gcloud sdk for the following:</p>
+<ul>
+<li>Create a GCE Virtual Machine</li>
+<li>Connect to SSH with port forwarding to said machine</li>
+</ul>
+<p>The rest will be done <strong>from the virtual machine</strong> except web preview that you can do from your browser</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>If you are on ISAE-EDU, using the google-cloud-sdk will not work, you will have to use your web browser exclusively</p>
+</div>
+<p>For the rest of this walkthrough, if it is written "from your local machine", this will be either your web browser, or your laptop's terminal or google cloud shell</p>
+<p>If it is written "inside the VM", this means that you have to run the SSH tunnel first...</p>
+<p>🙏🏻 Use Google Chrome without any ad blockers for console.cloud.google.com if you have any issues</p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>⚠️ ISAE-EDU is tricky and may prevent you from correctly connecting<br />
+⚠️ Remember that you may be often disconnected of cloud shell so using the cloud sdk locally is often easier :)</p>
+</div>
+<h2 id="team-composition">Team composition<a class="headerlink" href="#team-composition" title="Permanent link">🔗</a></h2>
+<p>You should be in team of 5, however this will work with a minimum of 2 people. Designate a "project manager" (the person who is the most comfortable with the google cloud platform UI). She or He will have the hard task of giving access to his/her GCP project to the other team members to enable collaboration.</p>
+<p>This means that the project of the "team leader" will be billed a little more for the duration of this BE, so please be kind with the project and apply good cloud hygiene :)</p>
+<p>Each team member picks a different cute mascot and remembers it:</p>
+<ul>
+<li>🐈 cat</li>
+<li>🐕 dog</li>
+<li>👽 (baby) yoda</li>
+<li>🦉 owl</li>
+<li>🐼 panda</li>
+</ul>
+<p>You should get access to a slack channel to collaborate; use it extensively :)</p>
+<h2 id="1-share-access-to-projects">1 - Share access to projects<a class="headerlink" href="#1-share-access-to-projects" title="Permanent link">🔗</a></h2>
+<ul>
+<li>The "project manager" must give access to his/her teammates using the IAM menu</li>
+<li>Add each team member by email address as <strong>editor</strong> (Quick Access -&gt; Basic -&gt; Editor) by following <a href="https://cloud.google.com/iam/docs/quickstart#grant_an_iam_role">this tutorial</a></li>
+<li>Each member should then see in their respective project list the new project</li>
+</ul>
+<p><img alt="iam" src="resources/iam.png" /></p>
+<p><img alt="iam2" src="resources/iam2.png" /></p>
+<div class="admonition warning">
+<p class="admonition-title">Warning</p>
+<p>This means that only one project will be billed. The project manager can remove accesss to the other teammates when the BE is finished. Do not forget to apply proper cloud hygiene and delete your instances when you are finished, even if you are not paying !</p>
+</div>
+<h2 id="2-create-google-compute-engine-vm">2 - Create Google Compute Engine VM<a class="headerlink" href="#2-create-google-compute-engine-vm" title="Permanent link">🔗</a></h2>
+<p>Each team member creates <strong>a separate machine</strong> on <strong>the same project</strong>,</p>
+<p>Here, you will create a Google Compute Engine instance, preconfigured with everything you need,</p>
+<p>If you use the CLI (either your local google cloud sdk or google cloud shell), you can use this</p>
+<p>First, set a variable with the name of your instance,</p>
+<div class="highlight"><pre><span></span><code><span class="nb">export</span> <span class="nv">INSTANCE_NAME</span><span class="o">=</span><span class="s2">&quot;be-cloud-mascot&quot;</span> <span class="c1"># RENAME THIS !!!!!!!!!!</span>
+</code></pre></div>
+<p>Then create your VM</p>
+<div class="highlight"><pre><span></span><code>gcloud compute instances create <span class="nv">$INSTANCE_NAME</span> <span class="se">\</span>
+        --zone<span class="o">=</span><span class="s2">&quot;europe-west4-a&quot;</span> <span class="se">\</span>
+        --machine-type<span class="o">=</span><span class="s2">&quot;n1-standard-2&quot;</span> <span class="se">\</span>
+        --image-family<span class="o">=</span><span class="s2">&quot;common-cpu&quot;</span> <span class="se">\</span>
+        --image-project<span class="o">=</span><span class="s2">&quot;deeplearning-platform-release&quot;</span> <span class="se">\</span>
+        --maintenance-policy<span class="o">=</span>TERMINATE <span class="se">\</span>
+        --scopes<span class="o">=</span><span class="s2">&quot;storage-rw&quot;</span> <span class="se">\</span>
+        --boot-disk-size<span class="o">=</span>50GB
+</code></pre></div>
+<p>If you use the web interface, follow this</p>
+<video width="320" height="240" controls>
+  <source src="resources/instance_create.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Describe concisely (on slack) to your past self (before the pandemic) what is a <code>Virtual Machine</code> and what is <code>Google Compute Engine</code></p>
+</div>
+<h2 id="3-connect-using-ssh-to-the-instance">3 - Connect using SSH to the instance<a class="headerlink" href="#3-connect-using-ssh-to-the-instance" title="Permanent link">🔗</a></h2>
+<h3 id="option-a-with-google-cloud-sdk">Option A with google cloud sdk<a class="headerlink" href="#option-a-with-google-cloud-sdk" title="Permanent link">🔗</a></h3>
+<p>If you are using the google cloud sdk, you can connect to ssh using the usual command (refer to <a href="1_2_gcp_handson.html">the first hands-on</a>) with SSH Tunneling</p>
+<p>Tunnel the following ports to your local machine:</p>
+<ul>
+<li>8080: This is reserved for a jupyter lab session by default, it makes it easy to see &amp; edit text</li>
+<li>8081: You will neeed to run containers and expose them on a port</li>
+</ul>
+<details class="hint"><summary>Hint</summary><div class="highlight"><pre><span></span><code>gcloud compute ssh <span class="o">{</span>user<span class="o">}</span>@<span class="o">{</span>instance<span class="o">}</span> -- <span class="se">\</span>
+    -L <span class="o">{</span>client-port<span class="o">}</span>:localhost:<span class="o">{</span>server-port<span class="o">}</span> <span class="se">\</span>
+    -L <span class="o">{</span>client-port-2<span class="o">}</span>:localhost:<span class="o">{</span>server-port-2<span class="o">}</span>
+</code></pre></div>
+</details>
+<p>Go to your browser and connect to http://localhost:8080, you should be in a jupyter lab where you can access a terminal, a text editor etc... this will make your life simpler.</p>
+<h3 id="option-b-with-the-web-browser-google-cloud-shell">Option B with the web browser (&amp; google cloud shell)<a class="headerlink" href="#option-b-with-the-web-browser-google-cloud-shell" title="Permanent link">🔗</a></h3>
+<p>If you can't SSH using the command line you will <strong>need</strong> to <em>either</em></p>
+<ul>
+<li>Use the in-browser SSH capabilities to connect to your instance (but that does not allow port forwarding so your life will be harder later on)</li>
+</ul>
+<p><img alt="ssh" src="resources/ssh.png" /></p>
+<ul>
+<li>Make a SSH tunnel between Google Cloud Shell and your VM with port forwarding AND use the web preview on port 8080 to access jupyter lab (and the web preview on port 8081 later on)</li>
+</ul>
+<video width="320" height="240" controls>
+  <source src="resources/gcp_ssh.mp4" type="video/mp4">
+Your browser does not support the video tag.
+</video>
+
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Describe concisely (on slack) to your past self (before the pandemic) what is a SSH Tunnel and what is port forwarding</p>
+</div>
+<h2 id="4-get-the-necessary-resources-from-google-cloud-storage">4 - Get the necessary resources from Google Cloud Storage<a class="headerlink" href="#4-get-the-necessary-resources-from-google-cloud-storage" title="Permanent link">🔗</a></h2>
+<p>The resources are located at the URI <code>gs://fchouteau-isae-cloud/be/${MASCOT}</code>,</p>
+<p>Your <code>${MASCOT}</code> name is either:</p>
+<ul>
+<li>cat</li>
+<li>dog</li>
+<li>owl</li>
+<li>panda</li>
+<li>yoda</li>
+</ul>
+<p>I advise you to <code>export MASCOT=....</code> to remember it :)</p>
+<p><strong>ONLY DOWNLOAD</strong> your mascot resources (no cheating ! this will only cause confusion later)</p>
+<p>Download them to your instance using the gcloud cli (refer to your <a href="1_2_gcp_handson.html#2-interacting-with-google-cloud-storage">previous work</a> for more information)</p>
+<details class="hint"><summary>Hint</summary><p><div class="highlight"><pre><span></span><code>gsutil -m cp -r <span class="o">{</span>source<span class="o">}</span> <span class="o">{</span>destination<span class="o">}</span>
+</code></pre></div>
+Remember that google storage URIs always begin with gs://</p>
+</details>
+<p><strong>Go to</strong> (<code>cd</code>) the folder where you downloaded your resources</p>
+<p>You should see a file structure like this</p>
+<div class="highlight"><pre><span></span><code>fchouteau@be-cloud-mascot:~/be$ tree yoda  -L 2
+yoda
+├── app.py
+├── AUTHOR.txt
+├── Dockerfile
+├── favicon.ico
+├── imgs
+│   ├── 1.gif
+│   ├── 2.gif
+│   ├── 3.gif
+│   ├── 4.gif
+│   └── 5.gif
+└── template.html.jinja2
+
+1 directory, 10 files
+</code></pre></div>
+<h2 id="5-build-your-docker-image">5 - Build your docker image<a class="headerlink" href="#5-build-your-docker-image" title="Permanent link">🔗</a></h2>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<ul>
+<li>Look at the <code>Dockerfile</code> (<code>cat Dockerfile</code>), what does it seem to do ?</li>
+<li>Look at <code>app.py</code> (<code>cat app.py</code>). What is Flask ? What does it seem to do ?</li>
+</ul>
+</div>
+<ul>
+<li>Edit the file <code>AUTHOR.txt</code> to add your name instead of the placeholder</li>
+<li>Refer to <a href="1_3_docker.html#20-webapps-with-docker">your previous work</a> to build the image</li>
+</ul>
+<div class="admonition danger">
+<p class="admonition-title">Danger</p>
+<p>On which port is your flask app running ? (<code>cat Dockerfile</code>)
+Note it carefully ! You will need to communicate it to your teammate :)</p>
+</div>
+<details class="hint" open="open"><summary>Hint</summary><p>To edit a file, it's easier if you are on jupyter lab...
+Otherwise you can still use <code>nano</code> or <code>vim</code><br />
+Here a VIM tutorial <a href="https://www.openvim.com/">https://www.openvim.com/</a>, good luck with that<br />
+Otherwise it's simple (or not): vim {file}, switch to edit mode (type <code>:edit</code>), edit your line, <code>ESCAPE</code> then <a href="https://stackoverflow.com/questions/11828270/how-do-i-exit-the-vim-editor">exit VIM</a> like <a href="https://github.com/hakluke/how-to-exit-vim">this</a> <code>:wq!</code><br />
+Nano is easier ! <a href="https://linuxize.com/post/how-to-use-nano-text-editor/">https://linuxize.com/post/how-to-use-nano-text-editor/</a></p>
+</details>
+<ul>
+<li>When building the image, name it appropriately... like <code>eu.gcr.io/${PROJECT_ID}/webapp-gif:${MASCOT}-1.0</code> !</li>
+</ul>
+<details class="hint"><summary>Hint</summary><p>to get your project id:
+<div class="highlight"><pre><span></span><code><span class="nv">PROJECT_ID</span><span class="o">=</span><span class="k">$(</span>gcloud config get-value project <span class="m">2</span>&gt; /dev/null<span class="k">)</span>
+</code></pre></div></p>
+</details>
+<ul>
+<li>now if you list your images you should see it !</li>
+</ul>
+<div class="highlight"><pre><span></span><code>REPOSITORY                                      TAG                 IMAGE ID            CREATED             SIZE
+eu.gcr.io/{your project}/{your-app}    1.0                 d1c5993848bf        2 minutes ago       62.1MB
+</code></pre></div>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Describe concisely (on slack) to your past self (before the pandemic) what is a <code>Docker Image</code></p>
+</div>
+<h2 id="6-push-your-docker-image-in-the-container-registry">6 - Push your Docker image in the Container Registry<a class="headerlink" href="#6-push-your-docker-image-in-the-container-registry" title="Permanent link">🔗</a></h2>
+<ul>
+<li>
+<p>Now <a href="1_3_docker.html#3-containers-registry">push your image on the shared container registry</a></p>
+</li>
+<li>
+<p>Help your team mates so that everybody can build his/her Docker Image</p>
+</li>
+</ul>
+<div class="admonition question">
+<p class="admonition-title">Question</p>
+<p>Describe succintly (on slack) to your past self (before the pandemic) what is a <code>Container Registry</code></p>
+</div>
+<p>In the end, things should look like this</p>
+<p><img alt="gcr" src="resources/container_registry.png" /></p>
+<h2 id="7-pull-docker-images-from-your-teammates">7 - Pull Docker Images from your teammates<a class="headerlink" href="#7-pull-docker-images-from-your-teammates" title="Permanent link">🔗</a></h2>
+<ul>
+<li>
+<p>Select another mascot and <a href="1_3_docker.html#1-manipulating-docker-for-the-1st-time">pull the corresponding docker image from the registry</a></p>
+</li>
+<li>
+<p>List the docker images you have. You should have at least 2 including yours</p>
+</li>
+</ul>
+<h2 id="8-run-docker-containers-from-their-docker-images">8 - Run Docker Containers from their Docker Images<a class="headerlink" href="#8-run-docker-containers-from-their-docker-images" title="Permanent link">🔗</a></h2>
+<ul>
+<li>
+<p>Run your container <strong>while mapping the correct port to your VM 8081</strong>. Which port is it ? Well, ask the one who built the image.</p>
+</li>
+<li>
+<p>When running the container, <a href="1_3_docker.html#21-run-a-static-website-in-a-container">setup the <code>USER</code> environment variable to your name</a> !</p>
+</li>
+</ul>
+<div class="admonition hint">
+<p class="admonition-title">Hint</p>
+<p>the port is not the same as yours<br />
+if you don't set the username, it will show later ;)</p>
+</div>
+<h2 id="9-display-the-results-share-them">9 - Display the results &amp; share them<a class="headerlink" href="#9-display-the-results-share-them" title="Permanent link">🔗</a></h2>
+<ul>
+<li>
+<p>TECHNICALLY you just launched a webapp on the port 8081 of your remote instance.</p>
+</li>
+<li>
+<p>If you have a ssh tunnel directly from your laptop, ensure that you made a tunnel for your port 8081 to any port of your machine then, go to <code>http://localhost:(your port)</code> inside your browser. The resulting webpage should appear</p>
+</li>
+<li>
+<p>If you are using google cloud shell, open web preview on port 8081 (you should have a tunnel running between your google cloud shell and your instance)</p>
+</li>
+</ul>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<ul>
+<li>The webpage should show the mascot your chose to run  </li>
+<li>The webpage should show the name of the author (not you)</li>
+<li>The webpage should show your name</li>
+</ul>
+</div>
+<div class="admonition bug">
+<p class="admonition-title">Bug</p>
+<p>If any of the three item above are missing, find the bug and solve it :)</p>
+</div>
+<div class="admonition example">
+<p class="admonition-title">Example</p>
+<p>Try to refresh the webpage to make more gifs appear</p>
+</div>
+<p><strong>Share your result on slack</strong></p>
+<h2 id="10-cleanup-the-gcp-project">10. Cleanup the GCP project<a class="headerlink" href="#10-cleanup-the-gcp-project" title="Permanent link">🔗</a></h2>
+<ul>
+<li>Remove your VMs</li>
+<li>Remove images from the container registry</li>
+</ul>
+<div class="admonition success">
+<p class="admonition-title">Success</p>
+<p>🎉 <em>you have successfully finished the BE. You know how to manipulate the basic notions around cloud computing and docker so that you won't be completely lost when someone will talk about it</em></p>
+</div>
+<p>If you have time left on your hands, do the Kubernetes TP !</p>
+                
+              
+              
+                
+
+
+              
+            </article>
+          </div>
+        </div>
+      </main>
+      
+        
+<footer class="md-footer">
+  
+    <div class="md-footer-nav">
+      <nav class="md-footer-nav__inner md-grid" aria-label="Footer">
+        
+          <a href="1_5_bonus.html" class="md-footer-nav__link md-footer-nav__link--prev" rel="prev">
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12z"/></svg>
+            </div>
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Previous
+                </span>
+                TP
+              </div>
+            </div>
+          </a>
+        
+        
+          <a href="1_6_conclusion.html" class="md-footer-nav__link md-footer-nav__link--next" rel="next">
+            <div class="md-footer-nav__title">
+              <div class="md-ellipsis">
+                <span class="md-footer-nav__direction">
+                  Next
+                </span>
+                Data Computation Conclusion
+              </div>
+            </div>
+            <div class="md-footer-nav__button md-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 11v2h12l-5.5 5.5 1.42 1.42L19.84 12l-7.92-7.92L10.5 5.5 16 11H4z"/></svg>
+            </div>
+          </a>
+        
+      </nav>
+    </div>
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-footer-copyright">
+        
+        Made with
+        <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+          Material for MkDocs
+        </a>
+      </div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    
+      <script src="assets/javascripts/vendor.08c56446.min.js"></script>
+      <script src="assets/javascripts/bundle.6ced434e.min.js"></script><script id="__lang" type="application/json">{"clipboard.copy": "Copy to clipboard", "clipboard.copied": "Copied to clipboard", "search.config.lang": "en", "search.config.pipeline": "trimmer, stopWordFilter", "search.config.separator": "[\\s\\-]+", "search.placeholder": "Search", "search.result.placeholder": "Type to start searching", "search.result.none": "No matching documents", "search.result.one": "1 matching document", "search.result.other": "# matching documents", "search.result.more.one": "1 more on this page", "search.result.more.other": "# more on this page", "search.result.term.missing": "Missing"}</script>
+      
+      <script>
+        app = initialize({
+          base: ".",
+          features: ['toc.autohide'],
+          search: Object.assign({
+            worker: "assets/javascripts/worker/search.8c7e0a7e.min.js"
+          }, typeof search !== "undefined" && search)
+        })
+      </script>
+      
+    
+  </body>
+</html>
