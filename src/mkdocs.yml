@@ -10,8 +10,8 @@ theme:
   palette:
     primary: light blue
     accent: light blue
-  logo: 'https://raw.githubusercontent.com/SupaeroDataScience/OBD/main/src/favicon.ico'
-  favicon: 'https://raw.githubusercontent.com/SupaeroDataScience/OBD/main/src/favicon.ico'
+  logo: 'https://raw.githubusercontent.com/SupaeroDataScience/OBD/master/src/favicon.ico'
+  favicon: 'https://raw.githubusercontent.com/SupaeroDataScience/OBD/master/src/favicon.ico'
   features:
     - toc.autohide
     - navigation.sections
@@ -41,7 +41,7 @@ nav:
 - Data Distribution:
   - Introduction: 2_1_overview.md
   - Functional Programming: 2_2_functional.md
-  - MapReduce and HDFS: 2_3_mapreduce.md
+  - Hadoop and MapReduce: 2_3_mapreduce.md
   - Spark: 2_4_spark.md
   - Dask on Kubernetes: 2_5_dask.md
   - Dask project: 2_6_project.md
