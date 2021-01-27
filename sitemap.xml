@@ -1,83 +1,83 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"><url>
      <loc>https://supaerodatascience.github.io/OBD/index.html</loc>
-     <lastmod>2021-01-26</lastmod>
+     <lastmod>2021-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://supaerodatascience.github.io/OBD/1_1_overview.html</loc>
-     <lastmod>2021-01-26</lastmod>
+     <lastmod>2021-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://supaerodatascience.github.io/OBD/1_1_presentation.html</loc>
-     <lastmod>2021-01-26</lastmod>
+     <lastmod>2021-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://supaerodatascience.github.io/OBD/1_2_cloud.html</loc>
-     <lastmod>2021-01-26</lastmod>
+     <lastmod>2021-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://supaerodatascience.github.io/OBD/1_2_gcp_setup.html</loc>
-     <lastmod>2021-01-26</lastmod>
+     <lastmod>2021-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://supaerodatascience.github.io/OBD/1_2_gcp_handson.html</loc>
-     <lastmod>2021-01-26</lastmod>
+     <lastmod>2021-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://supaerodatascience.github.io/OBD/1_3_containers.html</loc>
-     <lastmod>2021-01-26</lastmod>
+     <lastmod>2021-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://supaerodatascience.github.io/OBD/1_3_docker.html</loc>
-     <lastmod>2021-01-26</lastmod>
+     <lastmod>2021-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://supaerodatascience.github.io/OBD/1_4_orchestration.html</loc>
-     <lastmod>2021-01-26</lastmod>
+     <lastmod>2021-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://supaerodatascience.github.io/OBD/1_5_deployment.html</loc>
-     <lastmod>2021-01-26</lastmod>
+     <lastmod>2021-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://supaerodatascience.github.io/OBD/1_5_bonus.html</loc>
-     <lastmod>2021-01-26</lastmod>
+     <lastmod>2021-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://supaerodatascience.github.io/OBD/1_4_be.html</loc>
-     <lastmod>2021-01-26</lastmod>
+     <lastmod>2021-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://supaerodatascience.github.io/OBD/1_6_conclusion.html</loc>
-     <lastmod>2021-01-26</lastmod>
+     <lastmod>2021-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://supaerodatascience.github.io/OBD/1_7_readings.html</loc>
-     <lastmod>2021-01-26</lastmod>
+     <lastmod>2021-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://supaerodatascience.github.io/OBD/2_1_overview.html</loc>
-     <lastmod>2021-01-26</lastmod>
+     <lastmod>2021-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://supaerodatascience.github.io/OBD/2_2_functional.html</loc>
-     <lastmod>2021-01-26</lastmod>
+     <lastmod>2021-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://supaerodatascience.github.io/OBD/2_3_mapreduce.html</loc>
-     <lastmod>2021-01-26</lastmod>
+     <lastmod>2021-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://supaerodatascience.github.io/OBD/2_4_spark.html</loc>
-     <lastmod>2021-01-26</lastmod>
+     <lastmod>2021-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://supaerodatascience.github.io/OBD/2_5_dask.html</loc>
-     <lastmod>2021-01-26</lastmod>
+     <lastmod>2021-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url><url>
      <loc>https://supaerodatascience.github.io/OBD/2_6_project.html</loc>
-     <lastmod>2021-01-26</lastmod>
+     <lastmod>2021-01-27</lastmod>
      <changefreq>daily</changefreq>
     </url>
 </urlset>
