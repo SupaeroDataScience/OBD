@@ -824,22 +824,45 @@ popular DBMS PostgreSQL.</p>
 <a href="https://lms.isae.fr/pluginfile.php/72351/mod_resource/content/1/labSQLFSD312.pdf">TP</a>
 by Christophe Garion, CC BY-NC-SA 2015.</p>
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">🔗</a></h2>
-<p>For this session, students should install <a href="https://www.postgresql.org/download/">PostgreSQL</a> (v9 or higher) and <a href="https://www.pgadmin.org/">pgAdmin</a> (v4). Follow the installation instructions and make sure you have an initial database setup and the <code>postgresql</code> service running on Linux.</p>
+<p>For this session, students should install <a href="https://www.postgresql.org/download/">PostgreSQL</a> (v9 or higher) and <a href="https://www.pgadmin.org/">pgAdmin</a> (v4). Follow the installation instructions and make sure you have an initial database setup and the <code>postgresql</code> service running.</p>
 <ul>
 <li><a href="https://wiki.archlinux.org/index.php/PostgreSQL">Installation on Arch Linux</a></li>
 <li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ubuntu-20-04-quickstart">Installation on Ubuntu</a></li>
-<li><a href="https://www.postgresqltutorial.com/install-postgresql/">Installation on Windows</a></li>
-<li><a href="https://www.robinwieruch.de/postgres-sql-macos-setup">Installation on Mac OS</a></li>
+<li><a href="https://www.postgresqltutorial.com/install-postgresql/">Installation on Windows</a> (and add the PostgreSQL binaries to your <a href="https://www.pcastuces.com/pratique/astuces/5334.htm">path</a>)</li>
+<li><a href="https://postgresapp.com/">Installation on Mac OS</a></li>
 </ul>
-<p>Additionally, add your login user as a postgresql superuser to enable database creation. Once you've installated and configured PostgreSQL, create the first exercise database:</p>
-<div class="highlight"><pre><span></span><code>$ createdb db-mexico86
+<p>Additionally, add your login user as a postgresql superuser to enable database creation with your user:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># bash shell in Linux or OSX</span>
+$ sudo su -l postgres
+<span class="o">[</span>postgres<span class="o">]</span>$ createuser --interactive
 </code></pre></div>
-<p>Confirm with pgAdmin that your database <code>db-mexico86</code> was created. You may need to create a server "local" with the host address <code>127.0.0.1</code>.</p>
+<p>Once you've installated and configured PostgreSQL, create the first exercise database:</p>
+<div class="highlight"><pre><span></span><code><span class="c1"># bash shell in Linux or OSX or windows powershell</span>
+$ createdb db-mexico86
+</code></pre></div>
+<p>you can also do this through an SQL shell:</p>
+<div class="highlight"><pre><span></span><code><span class="o">#</span> <span class="k">SQL</span> <span class="n">shell</span>
+<span class="n">postgres</span><span class="o">=#</span> <span class="k">CREATE</span> <span class="k">DATABASE</span> <span class="ss">&quot;test-beer&quot;</span><span class="p">;</span>
+</code></pre></div>
+<p>Confirm with pgAdmin that your database <code>db-mexico86</code> was created. If you don't
+have any servers, create one by right-clicking. The host address is <code>127.0.0.1</code>
+and the maintenance database and username should be <code>postgres</code>.</p>
+<p>In pgAdmin, if you are asked for a password and don't know what your password
+is, you can reset the password of the postgres user:</p>
+<details><summary>change password</summary>
+
+<div class="highlight"><pre><span></span><code><span class="n">postgres</span><span class="o">=#</span> <span class="k">ALTER</span> <span class="k">USER</span> <span class="n">postgres</span> <span class="k">WITH</span> <span class="n">PASSWORD</span> <span class="ss">&quot;newpassword&quot;</span><span class="p">;</span>
+</code></pre></div>
+
+</details>
+
 <h2 id="mexico86-database-simple-queries">Mexico86 database - simple queries<a class="headerlink" href="#mexico86-database-simple-queries" title="Permanent link">🔗</a></h2>
 <p>This database contains data from the 1986 football World Cup. </p>
 <p>Download the creation and insertion <a href="https://github.com/SupaeroDataScience/OBD/tree/master/scripts">scripts</a> and run the scripts in the <code>mexico</code> folder.</p>
-<div class="highlight"><pre><span></span><code>$ psql -d db-mexico86 -f mexico86/create-tables-std.sql
+<div class="highlight"><pre><span></span><code><span class="c1"># bash shell in Linux or OSX, or windows powershell</span>
+$ psql -d db-mexico86 -f mexico86/create-tables-std.sql
 </code></pre></div>
+<p>If that doesn't work, you can copy the script into the Query Tool in pgAdmin.</p>
 <p><strong>Exercise 1.1</strong>: Look at the database creation scripts. What are the tables being created? What are their fields? Which fields are keys? Confirm these values in pgAdmin.</p>
 <details><summary>Response</summary>
 
@@ -867,7 +890,7 @@ $ psql -d db-mexico86 -f a.sql
 Argentine
 Italie
 Bulgarie
-République de Corée
+Corée
 Mexique
 Paraguay
 Belgique
@@ -899,10 +922,10 @@ Portugal
 <div class="highlight"><pre><span></span><code>        paysl        |        paysv 
 ---------------------|---------------------
 Bulgarie            | Italie
-Argentine           | République de Corée
+Argentine           | Corée
 Italie              | Argentine
-République de Corée | Bulgarie
-République de Corée | Italie
+Corée               | Bulgarie
+Corée               | Italie
 Argentine           | Bulgarie
 Belgique            | Mexique
 Paraguay            | Irak
@@ -960,7 +983,7 @@ RFA                 | Argentine
 <div class="highlight"><pre><span></span><code>        paysl        |   paysv
 ---------------------|-----------
 Italie              | Argentine
-République de Corée | Bulgarie
+Corée               | Bulgarie
 France              | URSS
 (3 rows)
 </code></pre></div>
@@ -1087,7 +1110,7 @@ Aime: (<u>buveur, biere</u>)
  Argentine           | Belgique            |    2 | 1/2    | 1986-06-25
  Brésil              | Pologne             |    4 | 1/8    | 1986-06-16
  Danemark            | Uruguay             |    7 | Poule  | 1986-06-08
- République de Corée | Italie              |    5 | Poule  | 1986-06-10
+ Corée               | Italie              |    5 | Poule  | 1986-06-10
  Canada              | France              |    1 | Poule  | 1986-06-01
  Argentine           | Uruguay             |    1 | 1/8    | 1986-06-16
  France              | RFA                 |    2 | 1/2    | 1986-06-25
@@ -1098,7 +1121,7 @@ Aime: (<u>buveur, biere</u>)
  Écosse              | Danemark            |    1 | Poule  | 1986-06-04
  Angleterre          | Paraguay            |    3 | 1/8    | 1986-06-18
  Hongrie             | Canada              |    2 | Poule  | 1986-06-06
- Argentine           | République de Corée |    4 | Poule  | 1986-06-02
+ Argentine           | Corée               |    4 | Poule  | 1986-06-02
  Pologne             | Portugal            |    1 | Poule  | 1986-06-07
  RFA                 | Écosse              |    3 | Poule  | 1986-06-08
  Mexique             | Bulgarie            |    2 | 1/8    | 1986-06-15
@@ -1107,7 +1130,7 @@ Aime: (<u>buveur, biere</u>)
  Paraguay            | Irak                |    1 | Poule  | 1986-06-04
  Argentine           | Bulgarie            |    2 | Poule  | 1986-06-10
  Argentine           | Angleterre          |    3 | 1/4    | 1986-06-22
- République de Corée | Bulgarie            |    2 | Poule  | 1986-06-05
+ Corée               | Bulgarie            |    2 | Poule  | 1986-06-05
 (51 rows)
 </code></pre></div>
 
@@ -1191,7 +1214,7 @@ SELECT * FROM vainqueur(&#39;Brésil&#39;, &#39;France&#39;, &#39;1/4&#39;);
  Argentine           |    14
  Italie              |     5
  Bulgarie            |     2
- République de Corée |     4
+ Corée               |     4
  Mexique             |     6
  Paraguay            |     4
  Belgique            |    10
@@ -1230,7 +1253,6 @@ SELECT * FROM vainqueur(&#39;Brésil&#39;, &#39;France&#39;, &#39;1/4&#39;);
 
 <h2 id="pull-the-trigger">Pull the trigger<a class="headerlink" href="#pull-the-trigger" title="Permanent link">🔗</a></h2>
 <p>In this exercise, we're going to create a <a href="https://sql.sh/cours/create-trigger">TRIGGER</a>, a mechanism which allows for automatically executing actions when an event occurs.</p>
-<p>Dans cet exercice, nous allons nous intéresser à la création d’untriggersur une base de données très simple.Rappelons qu’untriggerest un mécanisme permettant d’exécuter des actions lors de l’arrivée d’un événementparticulier (mise-à-jour d’une relation, insertion d’un nouveau tuple etc.).(a) créer une tablerel(nom, valeur)oùnomest une chaîne de caractères etvaleurun entier. On choisiranomcomme clé primaire.(b) insérer 5 tuples dans la table.(c) onsouhaitemaintenantquelorsdel’insertiondenouveauxtupleslamoyenneactuelledesvaleurscontenuesdans la relation ne puisse pas décroître</p>
 <p>Create the <code>db-trigger</code> database.</p>
 <div class="highlight"><pre><span></span><code>$ createdb db-trigger
 </code></pre></div>
