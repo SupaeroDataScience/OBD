@@ -838,7 +838,7 @@ by Christophe Garion, CC BY-NC-SA 2015.</p>
 <h2 id="mexico86-database-simple-queries">Mexico86 database - simple queries<a class="headerlink" href="#mexico86-database-simple-queries" title="Permanent link">🔗</a></h2>
 <p>This database contains data from the 1986 football World Cup. </p>
 <p>Download the creation and insertion <a href="https://github.com/SupaeroDataScience/OBD/tree/master/scripts">scripts</a> and run the scripts in the <code>mexico</code> folder.</p>
-<div class="highlight"><pre><span></span><code>$ psql -d db-mexico86 mexico86/create-tables-std.sql
+<div class="highlight"><pre><span></span><code>$ psql -d db-mexico86 -f mexico86/create-tables-std.sql
 </code></pre></div>
 <p><strong>Exercise 1.1</strong>: Look at the database creation scripts. What are the tables being created? What are their fields? Which fields are keys? Confirm these values in pgAdmin.</p>
 <details><summary>Response</summary>
@@ -997,8 +997,8 @@ Argentine
 <h2 id="beer-database">Beer database<a class="headerlink" href="#beer-database" title="Permanent link">🔗</a></h2>
 <p>We'll now use a database which tracks the beers that a group of friends enjoy. Create the database and populate it using the provided <a href="https://github.com/SupaeroDataScience/OBD/tree/master/scripts">scripts</a>.</p>
 <div class="highlight"><pre><span></span><code>$ createdb db-beer
-$ psql -d db-beer beer/create-tables-std.sql
-$ psql -d db-beer beer/insert.sql
+$ psql -d db-beer -f beer/create-tables-std.sql
+$ psql -d db-beer -f beer/insert.sql
 </code></pre></div>
 <p><strong>Exercise 2.1</strong>: Look at the database creation scripts. What are the tables being created? What are their fields? Which fields are keys? Confirm these values in pgAdmin.</p>
 <details><summary>Response</summary>
