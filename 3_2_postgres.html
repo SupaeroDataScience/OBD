@@ -812,44 +812,47 @@ by Christophe Garion, CC BY-NC-SA 2015.</p>
 <p><em>Exercise 1.</em> Look at the database creation scripts. What are the tables being created? What are their fields? Which fields are keys? Confirm these values in pgAdmin.</p>
 <details><summary>Answer</summary>
 
-      | Table | Fields |
-      | ----  | ------ |
-      | Pays  | (<u>nom</u>, poule) |
-      | Typematch  | (<u>type</u>) |
-      | Match  | (<u>paysl, paysv</u>, butsl, butsv, <u>type</u>, date)
+<div class="highlight"><pre><span></span><code>| Table | Fields |
+| ----  | ------ |
+| Pays  | (&lt;u&gt;nom&lt;/u&gt;, poule) |
+| Typematch  | (&lt;u&gt;type&lt;/u&gt;) |
+| Match  | (&lt;u&gt;paysl, paysv&lt;/u&gt;, butsl, butsv, &lt;u&gt;type&lt;/u&gt;, date)
+</code></pre></div>
 
   </details>
 
 <p><em>2.</em> Write a query which lists the countries participating in the World Cup.</p>
 <details><summary>Answer</summary>
 
-            nom         
-    ---------------------
-    Argentine
-    Italie
-    Bulgarie
-    République de Corée
-    Mexique
-    Paraguay
-    Belgique
-    Irak
-    URSS
-    Hongrie
-    France
-    Canada
-    Brésil
-    Espagne
-    Irlande du Nord
-    Algérie
-    Danemark
-    RFA
-    Uruguay
-    Écosse
-    Maroc
-    Angleterre
-    Pologne
-    Portugal
-    (24 rows)
+<div class="highlight"><pre><span></span><code>        nom         
+---------------------
+Argentine
+Italie
+Bulgarie
+République de Corée
+Mexique
+Paraguay
+Belgique
+Irak
+URSS
+Hongrie
+France
+Canada
+Brésil
+Espagne
+Irlande du Nord
+Algérie
+Danemark
+RFA
+Uruguay
+Écosse
+Maroc
+Angleterre
+Pologne
+Portugal
+(24 rows)
+</code></pre></div>
+
 </details>
 
 <p><em>3.</em> Write a query which lists all matches as a pair of countries per match.</p>
@@ -916,37 +919,40 @@ RFA                 | Argentine
 <p><em>3.</em> Write a query which lists the matches which took place on June 5, 1986.</p>
 <details><summary>Answer</summary>
 
-            paysl        |   paysv
-    ---------------------|-----------
-    Italie              | Argentine
-    République de Corée | Bulgarie
-    France              | URSS
-    (3 rows)
+<div class="highlight"><pre><span></span><code>        paysl        |   paysv
+---------------------|-----------
+Italie              | Argentine
+République de Corée | Bulgarie
+France              | URSS
+(3 rows)
+</code></pre></div>
 
 </details>
 
 <p><em>4.</em> Write a query which lists the countries which France played against (hint, France could have played either side).</p>
 <details><summary>Answer</summary>
 
-    pays
-    ---------
-    Brésil
-    Canada
-    Hongrie
-    Italie
-    RFA
-    URSS
-    (6 rows)
+<div class="highlight"><pre><span></span><code>pays
+---------
+Brésil
+Canada
+Hongrie
+Italie
+RFA
+URSS
+(6 rows)
+</code></pre></div>
 
 </details>
 
 <p><em>5.</em> Write a query which returns the winner of the World Cup</p>
 <details><summary>Answer</summary>
 
-    pays
-    -----------
-    Argentine
-    (1 row)
+<div class="highlight"><pre><span></span><code>pays
+-----------
+Argentine
+(1 row)
+</code></pre></div>
 
 </details>
 
