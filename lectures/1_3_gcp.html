@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+
+    <title>Google Cloud Platform</title>
+    <link rel="shortcut icon" href="./favicon.ico" />
+    <link rel="stylesheet" href="./dist/reveal.css" />
+    <link rel="stylesheet" href="./static/css/reset.css" />
+    <link rel="stylesheet" href="./static/css/evo.css" />
+    <!-- <link rel="stylesheet" href="_assets/evo" id="theme" /> -->
+    <link rel="stylesheet" href="./css/highlight/zenburn.css" />
+
+    <link rel="stylesheet" href="./_assets/static/css/evo.css" />
+    <link rel="stylesheet" href="./_assets/static/css/reset.css" />
+
+</head>
+
+<body>
+    <div class="reveal">
+        <div class="slides"><section ><section data-markdown><script type="text/template">
+
+## Google Cloud Platform
+
+<img src="https://berlioz.cloud/blog/images/google-cloud-platform-and-applications/header.png" alt="" width="60%" height="60%" style="background:none; border:none; box-shadow:none;"/>
+
+</script></section><section data-markdown><script type="text/template">
+
+- One of the main cloud provider
+- Behind AWS in SaaS (serverless...)
+- More "readable" product line (for a Cloud Provider...)
+- Very good "virtual machine" management  
+  * per second billing
+  * fine-grained resource allocation
+
+</script></section><section data-markdown><script type="text/template">
+
+![](https://static.packt-cdn.com/products/9781788837675/graphics/ee72c164-888d-4cec-b3f9-efd3b8e8e4cb.png)
+
+</script></section><section data-markdown><script type="text/template">
+
+<img src="https://raw.githubusercontent.com/gregsramblings/google-cloud-4-words/master/Poster-medres.png" alt="" width="75%" height="75%" style="background:none; border:none; box-shadow:none;"/>
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### Concepts
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Zones and Regions
+
+![](https://cloud.google.com/docs/images/overview/regions-zones.svg)
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Projects
+
+![](https://cloud.google.com/docs/images/overview/console-ids.png)
+
+- Access (Enabling API/Services)
+- Ressources (Quota by project)
+- Networking
+- Billing
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Concepts: Identity and Access Management (IAM)
+
+![iam](https://miro.medium.com/max/638/0*kGyUfNWZCk78hmPU.)
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Main Products we are going to be looking at
+
+- Google Compute Engine (virtual machine solutions)
+- Google Cloud Storage (storage solutions)
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Google Compute Engine (GCE)
+
+- The VM solution for GCP
+- Images: Boot disks for VM instances
+    example:  `ubuntu-1804`
+- Machine Types: Ressources available to your instance
+    example: `n1-standard-8` (8 vCPU, 30 Gb RAM)
+- Storage Options: "Attached disk" that can persist once the instance is destroyed... can be HDD, SDD...
+- Preemptible: "Spot instances" on AWS", cheap but can be killed any minute by GCP
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Google Cloud Storage (GCS)
+
+- Cheaper storage than persistent disks
+- Can be shared between multiple instances / zones
+- Higher latency
+- Several types of storage (w/ different r/w costs & performance)
+- Data is stored in "buckets" **whose name are globally unique**
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Interacting with GCP: The Console
+
+<img src="https://cloud.google.com/docs/images/overview/console.png" alt="" width="50%" height="50%" style="background:none; border:none; box-shadow:none;"/>
+
+<https://console.cloud.google.com>
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Interacting with GCP: SDK & Cloud Shell
+
+- Using the gcloud CLI: https://cloud.google.com/sdk/install
+- Using Google Cloud Shell: A small VM instance you can connect to with your browser
+
+</script></section></section><section ><section data-markdown><script type="text/template">
+
+### Self-paced hands-on
+
+![student](https://media.giphy.com/media/KCqO4k31TnkC2pT5LY/giphy.gif)
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Objectives
+
+- Create your GCP account, configure your credentials
+- Connect to google cloud shell and interact with it
+- Play a bit with google colab (useful for later)
+
+Next week we will do a lot more things with GCP !
+
+</script></section><section data-markdown><script type="text/template">
+
+#### Demo
+
+- Google Compute Engine Interface
+- Google Cloud Shell
+- Google Colaboratory
+</script></section></section></div>
+    </div>
+    <!-- <div id="footer-container" style="display:none;"> -->
+    <div id="footer-container">
+        <div id="footer">
+            Tools of Big Data
+            <br />
+            <a href="https://supaerodatascience.github.io/deep-learning/">https://supaerodatascience.github.io/OBD/</a>
+            <br />
+            <a rel="license" href="http://creativecommons.org/licenses/by-sa/4.0/"><img alt="Creative Commons License"
+                    style="border-width:0" src="https://i.creativecommons.org/l/by-sa/4.0/80x15.png" /></a>
+        </div>
+    </div>
+    <script src="./dist/reveal.js"></script>
+
+    <script src="./plugin/markdown/markdown.js"></script>
+    <script src="./plugin/highlight/highlight.js"></script>
+    <script src="./plugin/zoom/zoom.js"></script>
+    <script src="./plugin/notes/notes.js"></script>
+    <script src="./plugin/math/math.js"></script>
+    <script>
+        function extend() {
+            var target = {};
+            for (var i = 0; i < arguments.length; i++) {
+                var source = arguments[i];
+                for (var key in source) {
+                    if (source.hasOwnProperty(key)) {
+                        target[key] = source[key];
+                    }
+                }
+            }
+            return target;
+        }
+
+        // default options to init reveal.js
+        var defaultOptions = {
+            controls: true,
+            progress: true,
+            history: true,
+            center: true,
+            transition: 'default', // none/fade/slide/convex/concave/zoom
+            plugins: [
+                RevealMarkdown,
+                RevealHighlight,
+                RevealZoom,
+                RevealNotes,
+                RevealMath
+            ]
+        };
+
+        // options from URL query string
+        var queryOptions = Reveal().getQueryHash() || {};
+
+        var options = extend(defaultOptions, {"transition":"fade","transitionSpeed":"default","controls":true,"slideNumber":true,"width":"100%","height":"100%"}, queryOptions);
+    </script>
+
+
+    <script>
+        Reveal.initialize(options);
+        var footer = $('#footer-container').html();
+        $('div.reveal').append(footer);
+        var logo = $('#logo-container').html();
+        $('div.reveal').append(logo);
+    </script>
+</body>
+
+</html>
