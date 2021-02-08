@@ -842,11 +842,11 @@ by Christophe Garion, CC BY-NC-SA 2015.</p>
 <p><strong>Exercise 1.1</strong>: Look at the database creation scripts. What are the tables being created? What are their fields? Which fields are keys? Confirm these values in pgAdmin.</p>
 <details><summary>Response</summary>
 
-| Table | Fields |
-| ----  | ------ |
-| Pays  | (<u>nom</u>, groupe) |
-| Typematch  | (<u>type</u>) |
-| Match  | (<u>paysl, paysv</u>, butsl, butsv, <u>type</u>, date)
+Pays: (<u>nom</u>, groupe)
+<br/>
+Typematch: (<u>type</u>)
+<br/>
+Match: (<u>paysl, paysv</u>, butsl, butsv, <u>type</u>, date)
 
 </details>
 
@@ -1003,9 +1003,9 @@ $ psql -d db-beer beer/insert.sql
 <details><summary>Response</summary>
 
 Frequente: (<u>buveur, bar</u>)
-
+<br/>
 Sert: (<u>bar, biere</u>)
-
+<br/>
 Aime: (<u>buveur, biere</u>)
 
 </details>
