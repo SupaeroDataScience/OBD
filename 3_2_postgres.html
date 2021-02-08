@@ -689,8 +689,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mexico86-database" class="md-nav__link">
-    Mexico86 database
+  <a href="#mexico86-database-simple-queries" class="md-nav__link">
+    Mexico86 database - simple queries
   </a>
   
 </li>
@@ -759,8 +759,8 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mexico86-database" class="md-nav__link">
-    Mexico86 database
+  <a href="#mexico86-database-simple-queries" class="md-nav__link">
+    Mexico86 database - simple queries
   </a>
   
 </li>
@@ -797,19 +797,21 @@ popular DBMS PostgreSQL.</p>
 by Christophe Garion, CC BY-NC-SA 2015.</p>
 <h2 id="setup">Setup<a class="headerlink" href="#setup" title="Permanent link">🔗</a></h2>
 <p>For this session, students should install <a href="https://www.postgresql.org/download/">PostgreSQL</a> (v9 or higher) and <a href="https://www.pgadmin.org/">pgAdmin</a> (v4). Follow the installation instructions and make sure you have an initial database setup and the <code>postgresql</code> service running on Linux.</p>
-<p><a href="https://wiki.archlinux.org/index.php/PostgreSQL">Installation on Arch Linux</a>
-<a href="https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ubuntu-20-04-quickstart">Installation on Ubuntu</a>
-<a href="https://www.postgresqltutorial.com/install-postgresql/">Installation on Windows</a></p>
+<ul>
+<li><a href="https://wiki.archlinux.org/index.php/PostgreSQL">Installation on Arch Linux</a></li>
+<li><a href="https://www.digitalocean.com/community/tutorials/how-to-install-postgresql-on-ubuntu-20-04-quickstart">Installation on Ubuntu</a></li>
+<li><a href="https://www.postgresqltutorial.com/install-postgresql/">Installation on Windows</a></li>
+</ul>
 <p>Additionally, add your login user as a postgresql superuser to enable database creation. Once you've installated and configured PostgreSQL, create the first exercise database:</p>
 <div class="highlight"><pre><span></span><code>$ createdb db-mexico86
 </code></pre></div>
 <p>Confirm with pgAdmin that your database <code>db-mexico86</code> was created. You may need to create a server "local" with the host address <code>127.0.0.1</code>.</p>
-<h2 id="mexico86-database">Mexico86 database<a class="headerlink" href="#mexico86-database" title="Permanent link">🔗</a></h2>
+<h2 id="mexico86-database-simple-queries">Mexico86 database - simple queries<a class="headerlink" href="#mexico86-database-simple-queries" title="Permanent link">🔗</a></h2>
 <p>This database contains data from the 1986 football World Cup. </p>
 <p>Download the creation and insertion <a href="https://github.com/SupaeroDataScience/OBD/tree/master/scripts">scripts</a> and run the scripts in the <code>mexico</code> folder.</p>
-<div class="highlight"><pre><span></span><code>$ psql -d db-mexico86 mexico/create-tables-std.sql
+<div class="highlight"><pre><span></span><code>$ psql -d db-mexico86 mexico86/create-tables-std.sql
 </code></pre></div>
-<p><em>Exercise 1.</em> Look at the database creation scripts. What are the tables being created? What are their fields? Which fields are keys? Confirm these values in pgAdmin.</p>
+<p><strong>Exercise 1.1</strong>: Look at the database creation scripts. What are the tables being created? What are their fields? Which fields are keys? Confirm these values in pgAdmin.</p>
 <details><summary>Answer</summary>
 
 | Table | Fields |
@@ -820,10 +822,10 @@ by Christophe Garion, CC BY-NC-SA 2015.</p>
 
   </details>
 
-<p><em>2.</em> Write a query which lists the countries participating in the World Cup.</p>
+<p><strong>Exercise 1.2</strong>: Write a query which lists the countries participating in the World Cup.</p>
 <details><summary>Answer</summary>
 
-<div class="highlight"><pre><span></span><code>        nom         
+<div class="highlight"><pre><span></span><code>        nom 
 ---------------------
 Argentine
 Italie
@@ -854,7 +856,7 @@ Portugal
 
 </details>
 
-<p><em>3.</em> Write a query which lists all matches as a pair of countries per match.</p>
+<p><strong>Exercise 1.3</strong>: Write a query which lists all matches as a pair of countries per match.</p>
 <details><summary>Answer</summary>
 
 <div class="highlight"><pre><span></span><code>        paysl        |        paysv 
@@ -915,7 +917,7 @@ RFA                 | Argentine
 
 </details>
 
-<p><em>3.</em> Write a query which lists the matches which took place on June 5, 1986.</p>
+<p><strong>Exercise 1.4</strong>: Write a query which lists the matches which took place on June 5, 1986.</p>
 <details><summary>Answer</summary>
 
 <div class="highlight"><pre><span></span><code>        paysl        |   paysv
@@ -928,7 +930,7 @@ France              | URSS
 
 </details>
 
-<p><em>4.</em> Write a query which lists the countries which France played against (hint, France could have played either side).</p>
+<p><strong>Exercise 1.5</strong>: Write a query which lists the countries which France played against (hint, France could have played either side).</p>
 <details><summary>Answer</summary>
 
 <div class="highlight"><pre><span></span><code>pays
@@ -944,7 +946,7 @@ URSS
 
 </details>
 
-<p><em>5.</em> Write a query which returns the winner of the World Cup</p>
+<p><strong>Exercise 1.6</strong>: Write a query which returns the winner of the World Cup</p>
 <details><summary>Answer</summary>
 
 <div class="highlight"><pre><span></span><code>pays
@@ -956,11 +958,62 @@ Argentine
 </details>
 
 <h2 id="beer-database">Beer database<a class="headerlink" href="#beer-database" title="Permanent link">🔗</a></h2>
+<p>We'll now use a database which tracks the beers that a group of friends enjoy. Create the database and populate it using the provided [scripts]</p>
 <div class="highlight"><pre><span></span><code>$ createdb db-beer
 </code></pre></div>
 <div class="highlight"><pre><span></span><code>$ psql -d beer beer/create-tables-std.sql
 $ psql -d beer beer/insert.sql
 </code></pre></div>
+<p><strong>Exercise 2.1</strong>: Look at the database creation scripts. What are the tables being created? What are their fields? Which fields are keys? Confirm these values in pgAdmin.</p>
+<details><summary>Answer</summary>
+
+Frequente: (<u>buveur, bar</u>)
+
+Sert: (<u>bar, biere</u>)
+
+Aime: (<u>buveur, biere</u>)
+
+</details>
+
+<p>Write queries which respond to the following questions:</p>
+<p><strong>Exercise 2.2</strong> What is the list of bars which serve the beer that Martin likes?</p>
+<details><summary>Answer</summary>
+
+<div class="highlight"><pre><span></span><code>        bar 
+-------------------
+ Ancienne Belgique
+ La Tireuse
+ Le Filochard
+(3 rows)
+</code></pre></div>
+
+</details>
+
+<p><strong>Exercise 2.3</strong> What is the list of drinkers who go to at least one bar which servers a beer they like?</p>
+<details><summary>Answer</summary>
+
+<div class="highlight"><pre><span></span><code> buveur 
+--------
+ Bob
+ David
+ Emilie
+ Martin
+(4 rows)
+</code></pre></div>
+
+</details>
+
+<p><strong>Exercise 2.3</strong> What is the list of drinkers who don't go to any bars which serve the beer they like?</p>
+<details><summary>Answer</summary>
+
+<div class="highlight"><pre><span></span><code> buveur 
+--------
+ Cecile
+ Alice
+(2 rows)
+</code></pre></div>
+
+</details>
                 
               
               
